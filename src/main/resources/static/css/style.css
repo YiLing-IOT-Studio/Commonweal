@@ -29,14 +29,11 @@ body{
 nav{
 	height:50px;
 	background-color:white;
-	/*border-bottom:1px solid red;*/
-
 	box-shadow:2px 1px 2px ;
 }
 .user{
 	margin-top:5px;
 	display:inline-block;
-
 }
 .dropdown-menu li{
 	color: deeppink;
