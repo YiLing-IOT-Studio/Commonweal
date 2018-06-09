@@ -30,10 +30,10 @@
         <div class="top-nav">
             <ul>
                 <li><a href="index.html">主页</a></li>
-                <li><a href="#">发布活动</a></li>
-                <li><a href="#">活动记录</a></li>
-                <li><a href="#">活动照片</a></li>
-                <li><a href="#">活动名单</a></li>
+                <li id="publish"><a href="#">发布活动</a></li>
+                <li id="record"><a href="#">活动记录</a></li>
+                <li id="upload2"><a href="#">活动照片</a></li>
+                <li id="list"><a href="#">活动名单</a></li>
                 <li><a href="#">新闻稿</a></li>
             </ul>
         </div>
@@ -41,6 +41,27 @@
     <!----start-content----->
     <div class="content">
         <div class="grids">
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <input type="file" id="exampleInputFile">
+                    <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Check me out
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
             <div class="grid box">
                 <div class="grid-header">
                     <h3>志愿林维护</h3>

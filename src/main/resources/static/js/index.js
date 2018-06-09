@@ -13,10 +13,9 @@ function ajaxData(tag,currentPage){
         },
         success:function(data){
             var rows=3;
+            var oDiv = $(".grids");
+            oDiv.html('');
             $.each(data,function(index,obj) {
-                    var oDiv = $(".grids");
-                    oDiv.html('');
-
                 var str=obj['msg'];
                 //限制显示词数，点击后显示所有词
                 if(obj['msg'].length>=100){
@@ -62,7 +61,7 @@ function ajaxData(tag,currentPage){
                                     +'</div>'+
                                     '<div class="modal-footer">'+
                                         '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
-                                        '<button type="button" class="btn btn-primary">立即报名</button>'+
+                                        '<button type="button" class="btn btn-primary"><a href="contact.html">立即报名</a></button>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -124,5 +123,34 @@ $('.logout').click(function () {
         }
     })
 });
+//搜索栏搜索
+$("#searchBar").click(function(event){
+    event.preventDefault();
+    var val=$("#searchFor").val();
+    ajaxData(val,1);
+});
+//活动新闻
+$.ajax({
+    type:"get",
+    url:"/",
+    dataType:"json",
+    success:function(data){
+
+        var news=$(".popular-post");
+        news.html('');
+        $.each(data,function(index,obj){
+            news.append($(' <div class="post-grid">'+
+                '<img src="'+obj['news_img']+'" title="post1">'+
+                '<p>Lorem ipsum dolor sit ametconsectetur dolor,'+'<a href="#">...</a></p>'+
+                '<div class="clear"></div>'+
+                ' </div>'));
+        })
+
+    }
+});
+//活动名单
+//活动照片
+//新闻稿
+
 
 
