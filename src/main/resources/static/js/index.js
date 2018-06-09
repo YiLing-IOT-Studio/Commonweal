@@ -1,18 +1,22 @@
 /**
  * Created by 杨玉卿 on 2018/6/9.
  */
-function ajaxData(tag){
+function ajaxData(tag,currentPage){
     $.ajax({
         type:"get",
         url:"/",
         dataType:"json",
         data:{
-            'tag':tag
+            'tag':tag,
+            rows:"10",
+            pageNo:currentPage
         },
         success:function(data){
+            var rows=3;
             $.each(data,function(index,obj) {
                     var oDiv = $(".grids");
                     oDiv.html('');
+
                 var str=obj['msg'];
                 //限制显示词数，点击后显示所有词
                 if(obj['msg'].length>=100){
@@ -63,6 +67,17 @@ function ajaxData(tag){
                                 '</div>'+
                             '</div>'+
                         '</div>'));
+                scrollTo(0,0);//回到顶部
+                //分页
+                $("#pagination").paging({
+                    rows:rows,//每页显示条数
+                    pageNo:currentPage,//当前所在页码
+                    totalPage:data[data.length-1]['totalPage'],//总页数
+                    totalSize:data[data.length-1]['totalSize'],//总记录数
+                    callback:function(currentPage){
+                        ajaxData(tag,currentPage);
+                    }
+                });
                 //查看全文
                     $(".grid-img-content p").click(function(){
                         $(this).html(obj['msg']);
@@ -83,11 +98,11 @@ function ajaxData(tag){
     })
 }
 //初始时，所有数据
-ajaxData('全部活动');
+ajaxData('全部活动',1);
 //点击左侧分类菜单，对应数据
 $(".top-nav ul li").click(function(){
     var tag=$(this).find("a").html();
-    ajaxData(tag);
+    ajaxData(tag,1);
 });
 //注销
 $('.logout').click(function () {
