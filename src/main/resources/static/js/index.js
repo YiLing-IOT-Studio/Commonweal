@@ -36,7 +36,7 @@ function ajaxData(tag){
                         '<ul>'+
                         '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="../static/img/views.png" title="view" /></a></li>'+
                         '<li><a href="#" id="likes"><img src="../static/img/likes.png" title="likes" /></a></li>'+
-                        '<li><a href="#" id="link"><img src="../static/img/link.png" title="link" /></a></li>'+
+                        '<li><a href="contact.html" id="link"><img src="../static/img/link.png" title="link" /></a></li>'+
                         '<li><a class="readmore" href="singlepage.html">ReadMore</a></li>'+
                         '</ul>'+
                         '</div>'+
@@ -58,7 +58,7 @@ function ajaxData(tag){
                                     +'</div>'+
                                     '<div class="modal-footer">'+
                                         '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'+
-                                        '<button type="button" class="btn btn-primary">Save changes</button>'+
+                                        '<button type="button" class="btn btn-primary">立即报名</button>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'+
@@ -89,4 +89,25 @@ $(".top-nav ul li").click(function(){
     var tag=$(this).find("a").html();
     ajaxData(tag);
 });
+//注销
+$('.logout').click(function () {
+    $.ajax({
+        type: "get",
+        url: "/logout",
+        dataType: "json",
+        data: {},
+        success: function (data) {
+            if (data == '200') {
+                window.location.replace("http://localhost:8888/auth1")
+            }
+            else {
+                alert("注销失败，请重试！")
+            }
+        },
+        error: function () {
+            alert("注销请求失败");
+        }
+    })
+});
+
 
