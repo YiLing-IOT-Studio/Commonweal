@@ -4,7 +4,7 @@
 function ajaxData(tag,currentPage){
     $.ajax({
         type:"get",
-        url:"/",
+        url:"/getActivite",
         dataType:"json",
         data:{
             'tag':tag,
@@ -124,5 +124,7 @@ $('.logout').click(function () {
         }
     })
 });
+
+
 
 
