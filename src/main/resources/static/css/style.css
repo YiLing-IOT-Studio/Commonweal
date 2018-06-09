@@ -199,6 +199,9 @@ h4{
 .grid-img-content {
 	padding: 10px 0px;
 }
+.grid-img-content p:hover{
+	cursor:pointer;
+}
 .comments li img{
 	vertical-align:center;
 }
