@@ -76,6 +76,7 @@ public class AuthControl {
         String ybSchoolName = (String) infoObject.get("yb_schoolname");
         User user = new User(ybUserId, ybUsername, ybUsernick, ybSex, ybMoney, ybSchoolId, ybSchoolName);
         return user;
+
     }
 
     /**
