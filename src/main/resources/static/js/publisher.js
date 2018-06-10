@@ -1,31 +1,55 @@
 /**
  * Created by 杨玉卿 on 2018/6/9.
  */
-//发布活动
-$("#publish").click(function(){
-    var oDiv=$(".grid");
-    oDiv.html('');
-    oDiv.append($('<form>'+
-        '<div class="form-group">'+
-        '<label for="exampleInputEmail1">Email address</label>'+
-    '<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">'+
-        '</div>'+
-        '<div class="form-group">'+
-        '<label for="exampleInputPassword1">Password</label>'+
-        '<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">'+
-        '</div>'+
-        '<div class="form-group">'+
-        '<label for="exampleInputFile">File input</label>'+
-    '<input type="file" id="exampleInputFile">'+
-        '<p class="help-block">Example block-level help text here.</p>'+
-    '</div>'+
-    '<div class="checkbox">'+
-        '<label>'+
-        '<input type="checkbox"> Check me out'+
-    '</label>'+
-    '</div>'+
-    '<button type="submit" class="btn btn-default">Submit</button>'+
-        '</form>'));
+//发布活动，传数据
+$("#pub_btn").click(function(event){
+        event.preventDefault();
+        var activity_form=new FormData(publishForm);
+        if($("#act_name").val()==""){
+            alert("请填写活动名称！");
+        }
+        else if($("#act_time").val()==""){
+            alert("请填写活动时间！");
+        }
+        else if($("#act_place").val()==""){
+            alert("请填写活动地点！");
+        }
+        else if($("#act_deadline").val()==""){
+            alert("请填写报名截止时间！");
+        }
+        else if($("#act_limit").val()==""){
+            alert("请填写报名人数限制！");
+        }
+        else if($("#act_msg").val()==""){
+            alert("请填写活动介绍！");
+        }
+        else if($("#act_msg").val().length<100){
+            alert("活动介绍不少于100字！");
+        }
+        else if($("#InputFile").val()==""){
+            alert("请上传活动配图！");
+        }
+        else{
+            $.ajax({
+                type:"post",
+                url:"/",
+                data:activity_form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    if(data==1){
+                        alert("发布成功");
+                    }
+                    else{
+                        alert("发布失败");
+                    }
+                },
+                error:function(){
+                    alert("请求失败");
+                }
+            })
+        }
+
 });
 //活动记录
 function ajaxData(currentPage){
@@ -127,3 +151,4 @@ ajaxData(1);
 $("#record").click(function(){
     ajaxData(1);
 });
+

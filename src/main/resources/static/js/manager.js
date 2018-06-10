@@ -63,7 +63,7 @@ $("#reply").click(function(){
         }
     });
 });
-//同意，删除操作
+//同意，拒绝操作
 $(".agree .disagree").click(function(){
     $(this).parent().remove();
     $.ajax({
