@@ -91,3 +91,29 @@ function ajaxData(){
 $(".record").click(function(){
     ajaxData();
 });
+$(".msg").click(function(){
+    $.ajax({
+        type:"get",
+        url:"/",
+        dataType:"json",
+        success:function(data){
+            var oDiv=$("#msg");
+            oDiv.html("");
+            if(data==""){
+                oDiv.html("您还没有任何通知消息~")
+            }
+            else if(data=="同意"){
+                oDiv.append("<p>恭喜，您已成为本平台活动的发布者！</p>");
+            }
+            else if(data=="拒绝"){
+                oDiv.append("<p>很遗憾，您未能通过审核成为本平台活动的发布者，下次再试试吧^-^</p>");
+            }
+            else{
+                alert(data);
+            }
+        },
+        error:function(xhr,msg){
+            alert(msg);
+        }
+    })
+});
