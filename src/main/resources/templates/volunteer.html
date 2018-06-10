@@ -130,24 +130,25 @@
         <div id="state"></div>
         <div id="article"></div>
         <div id="apply">
-            <form id="publishForm" name="publishForm">
+            <form id="applyForm" name="applyForm">
                 <div class="form-group">
-                    <label for="org_name">组织名称</label>
-                    <input type="text" class="form-control" id="org_name" name="publisher">
+                    <label for="applyName">组织名称</label>
+                    <input type="text" class="form-control" id="applyName" name="applyName">
                 </div>
 
                 <div class="form-group">
-                    <label for="act_time">直属上级</label>
-                    <input type="text" class="form-control" id="act_time" name="act_time">
+                    <label for="superior">直属上级</label>
+                    <input type="text" class="form-control" id="superior" name="superior">
                 </div>
                 <div class="form-group">
-                    <input type="file" id="InputFile" name="img">
+                    <input type="file" id="evidence" name="evidence">
                     <p class="help-block">请出具证明的图片.</p>
                 </div>
-                <button type="submit" class="btn btn-primary" id="pub_btn">发布</button>
+                <button type="submit" class="btn btn-primary" id="applyBtn">提交</button>
             </form>
         </div>
     </div>
 </div>
+<script src="../static/js/volunteer.js"></script>
 </body>
 </html>
