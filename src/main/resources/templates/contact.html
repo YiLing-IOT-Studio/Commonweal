@@ -2,10 +2,12 @@
 <!DOCTYPE HTML>
 <html>
  <head>
-	 <title>易公益</title>
-	 <link href="../static/css/contact.css" rel="stylesheet" type="text/css"/>
-	 <link rel="shortcut icon" href="../static/img/favicon.png" type="image/x-icon" />
 	 <meta name="keywords" content="易公益" charset="utf-8"/>
+	 <title>易公益</title>
+	 <link href="../static/lib/bootstrap.min.css" rel="stylesheet"/>
+	 <link href="../static/css/contact.css" rel="stylesheet"/>
+	 <link rel="shortcut icon" href="../static/img/favicon.png" type="image/x-icon" />
+
 	 <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans' rel='stylesheet' type='text/css'>
  </head>
 	<body>
@@ -19,28 +21,33 @@
 				<div class="contact">
 					<div class="contact-form">
 						<h3>在线报名</h3>
-						<form>
+						<form id="contactForm" name="contactForm">
 							<p>学号</p>
-							<input type="text">
+							<input type="text" id="stuId" name="stuId">
+							<p>姓名</p>
+							<input type="text" id="stuName" name="stuName">
 							<p>学院</p>
-							<input type="text">
-							<p>专业年级</p>
-							<input type="text">
-							<p>联系方式</p>
-							<input type="text">
+							<input type="text" id="school" name="school">
+							<p>专业</p>
+							<input type="text" id="major" name="major">
+							<p>年级</p>
+							<label>
+								<input type="radio" name="grade"  value="大一">大一
+							</label>
+							<label>
+								<input type="radio" name="grade" value="大二"> 大二
+							</label>
+							<label>
+								<input type="radio" name="grade" value="大三"> 大三
+							</label>
+							<label>
+								<input type="radio" name="grade" value="大四"> 大四
+							</label>
+							<p>电话</p>
+							<input type="text" id="telephoneNumber" name="telephoneNumber"><br/>
 
-							<input type="submit" value="Send">
+							<input type="submit" value="Send" id="contactBtn">
 						</form>
-					</div>
-					<div class="contact-address">
-						<h3>联系地址</h3>
-						<p>您可以通过以下方式联系主办方：</p>
-						<ul>
-							<li><a href="#"><img src="../static/img/mobile.png" title="mobileno" />+404(0) 1234 5789</a></li>
-							<li><a href="#"><img src="../static/img/sms.png" title="message" />hello@demolinks.com</a></li>
-							<li><a href="#"><img src="../static/img/skep.png" title="skeep" />step.man04</a></li>
-							<li><a href="#"><img src="../static/img/twit.png" title="twitter" />twitter.com/jan</a></li>
-						</ul>
 					</div>
 					<div class="clear"> </div>
 				</div>
@@ -83,6 +90,7 @@
 			<!---end-sidebar---->
 		</div>
 		<!---end-wrap---->
+	<script src="../static/js/contact.js"></script>
 	</body>
 </html>
 

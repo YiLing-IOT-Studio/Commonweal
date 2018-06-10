@@ -26,6 +26,9 @@ $("#pub_btn").click(function(event){
         else if($("#act_msg").val().length<100){
             alert("活动介绍不少于100字！");
         }
+        else if($(":radio[name='type']").is(":checked")==false){
+            alert("请选择活动类别!");
+        }
         else if($("#InputFile").val()==""){
             alert("请上传活动配图！");
         }
@@ -160,4 +163,61 @@ $(".top-nav li").click(function(){
     $("#list").hide();
     $("#news").hide();
     $("#"+flag).show();
+});
+//获取发布的活动
+$("#checkActivity").focus(function(){
+    $.ajax({
+        type:"get",
+        url:"/",
+        dataType:"json",
+        success:function(data){
+            var oDiv=$("#checkActivity");
+            oDiv.html("");
+            if(data.length==0){
+                alert("您还没有发布的活动！");
+            }
+            else {
+                for (var i in data) {
+                    var myOption = $("<option></option>");
+                    myOption.append(data[i]);
+                    oDiv.append(myOption)
+                }
+            }
+        },
+        error:function(){
+            alert("请求失败");
+        }
+    })
+});
+//查看活动名单
+$("#checkActivityBtn").click(function(){
+    var activityName=$("#checkActivity").val();
+    $.ajax({
+        type:"post",
+        url:"/",
+        dataType:"json",
+        data:{
+            "activityName":activityName
+        },
+        success:function(data){
+            var oDiv=$("#attendList");
+            oDiv.html("");
+            if(data.length==0){
+                oDiv.html("<h3>还没有人报名活动，再等等吧~</h3>");
+            }
+            else{
+                $.each(data,function(index,obj) {
+                    oDiv.append($(
+                        '<tr>' +
+                        '<td>' + obj['stuId'] + '</td>' +
+                        '<td>' + obj['stuName'] + '</td>' +
+                        '<td>'+obj['school']+'</td>' +
+                        '<td>'+obj['major']+'</td>' +
+                        '<td>'+obj['grade']+'</td>' +
+                        '<td>'+obj['telephoneNumber']+'</td>' +
+                        '</tr>'));
+                })
+            }
+        }
+    })
 });

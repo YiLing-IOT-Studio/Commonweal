@@ -200,7 +200,7 @@ h4{
     border-bottom: 5px solid lightblue;
 }
 .singlepage1 h3:before{
-    content: url(../images/r-blog.png);
+    content: url(../img/r-blog.png);
     vertical-align: middle;
     margin-right: 3px;
 }
@@ -210,15 +210,14 @@ h4{
     border-bottom: 1px ridge rgb(240, 240, 240);
 }
 .contact-form{
-    float:left;
-    width: 50%;
+    width: 100%;
 }
 .contact-form p{
     font-size: 0.8em;
     font-family: 'Merriweather Sans', sans-serif;
     color: rgb(155, 155, 155);
 }
-.contact-form input[type="text"],.contact-form textarea{
+.contact-form input[type="text"]{
     width: 91%;
     border: none;
     padding: 5px;
@@ -229,17 +228,19 @@ h4{
     color: rgb(155, 155, 155);
     box-shadow: 0.2px 0.2px 4px rgb(255, 232, 232);
 }
+.contact-form label{
+    color: rgb(155, 155, 155);
+    font-size: 0.8em;
+    margin: 5px 50px;
+}
 .contact-form textarea{
     height:100px;
-}
-.contact-address{
-    float:right;
-    width: 50%;
 }
 .contact-form input[type="submit"]{
     border:none;
     outline:none;
     padding:10px 12px;
+    margin-top:20px;
     font-size: 0.8em;
     font-family: 'Merriweather Sans', sans-serif;
     background:lightblue;
@@ -255,24 +256,4 @@ h4{
 .contact-form input[type="submit"]:hover{
     background: rgb(80, 80, 80);
 }
-.contact-form h3,.contact-address h3{
-    font-size:1.3em;
-    margin-bottom: 10px;
-}
-.contact-address p,.contact-address ul li a{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8em;
-    color: rgb(155, 155, 155);
-    line-height: 1.8em;
-}
-.contact-address ul li a:hover{
-    color:#EA5546;
-}
-.contact-address ul li a img{
-    vertical-align: middle;
-    margin-right:3px;
-}
-.contact-address ul li a{
-    display: block;
-    padding: 6px 0px;
-}
+
