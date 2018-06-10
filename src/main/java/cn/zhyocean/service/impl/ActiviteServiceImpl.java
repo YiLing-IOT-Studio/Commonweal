@@ -45,6 +45,13 @@ public class ActiviteServiceImpl implements ActiviteService {
         return jsonArray;
     }
 
+    @Override
+    public void insertActivite(Activite activite) {
+        int result = activiteMapper.insertActivite(activite);
+        System.out.println("插入结构result：" +result);
+        System.out.println("公益活动信息插入成功！");
+    }
+
     private Map<String, Integer> countActiviteByTag(String tag, int rows) {
         int countActivites = activiteMapper.countActiviteByTag(tag);
         System.out.println("通过标签 " + tag + " 查到了" + countActivites + "条数据");

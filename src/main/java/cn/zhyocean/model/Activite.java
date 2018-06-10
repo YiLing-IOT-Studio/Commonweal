@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Activite {
 
-    private String id;
+    private int id;
 
     /**
      * 活动名称
@@ -38,6 +38,11 @@ public class Activite {
     private String publishDate;
 
     /**
+     * 活动时间
+     */
+    private String activiteDate;
+
+    /**
      *剩余名额
      */
     private int remain;
@@ -60,5 +65,33 @@ public class Activite {
     /**
      *人数限制
      */
-    private int limit;
+    private int personalLimit;
+
+    public Activite() {
+    }
+
+
+    public Activite(String title, String category, String activiteDate, String msg, String place, String deadLine, int personalLimit) {
+        this.title = title;
+        this.category = category;
+        this.activiteDate = activiteDate;
+        this.msg = msg;
+        this.place = place;
+        this.deadLine = deadLine;
+        this.personalLimit = personalLimit;
+    }
+
+    public Activite(String title, String category, String publisher, String img, String publishDate, String activiteDate, int remain, String msg, String place, String deadLine, int personalLimit) {
+        this.title = title;
+        this.category = category;
+        this.publisher = publisher;
+        this.img = img;
+        this.publishDate = publishDate;
+        this.activiteDate = activiteDate;
+        this.remain = remain;
+        this.msg = msg;
+        this.place = place;
+        this.deadLine = deadLine;
+        this.personalLimit = personalLimit;
+    }
 }

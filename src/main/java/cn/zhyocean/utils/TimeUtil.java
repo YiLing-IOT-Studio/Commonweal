@@ -1,11 +1,24 @@
 package cn.zhyocean.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author: zhangocean
  * @Date: 2018/6/9 14:49
- * Describe:
+ * Describe: 时间工具
  */
 public class TimeUtil {
+
+    /**
+     * 获得当前时间
+     * @return eg:2018/6/10
+     */
+    public String getNowDate(){
+        Date now = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/DD");
+        return simpleDateFormat.format(now);
+    }
 
     /**
      * 将long型时间拼接成 *天*时*分*秒 的形式

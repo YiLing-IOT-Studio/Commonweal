@@ -48,7 +48,7 @@ $("#pub_btn").click(function(event){
         else{
             $.ajax({
                 type:"post",
-                url:"/",
+                url:"/publisher",
                 data:activity_form,
                 processData:false,
                 contentType:false,

@@ -1,6 +1,7 @@
 package cn.zhyocean.mapper;
 
 import cn.zhyocean.model.Activite;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -17,6 +18,9 @@ import java.util.List;
 @Repository
 public interface ActiviteMapper {
 
+    @Insert("insert into activite(title,category,publisher,img,publishDate,remain,msg,place,deadLine,personalLimit,activiteDate)" +
+                "values(#{title},#{category},#{publisher},#{img},#{publishDate},#{remain},#{msg},#{place},#{deadLine},#{personalLimit},#{activiteDate})")
+    int insertActivite(Activite activite);
 
     @Select("select * from activite where category=#{tag} limit #{start},#{pageSize}")
     List<Activite> findActiviteByTag(@Param("tag") String tag, @Param("pageSize") int pageSize, @Param("start") int start);

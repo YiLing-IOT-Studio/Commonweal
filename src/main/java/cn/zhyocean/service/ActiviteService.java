@@ -1,5 +1,6 @@
 package cn.zhyocean.service;
 
+import cn.zhyocean.model.Activite;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +19,9 @@ public interface ActiviteService {
      */
     JSONArray findActiviteByTag(String tag, String rows, String pageNo);
 
-
+    /**
+     * 发布公益活动
+     * @param activite 活动实体类
+     */
+    void insertActivite(Activite activite);
 }

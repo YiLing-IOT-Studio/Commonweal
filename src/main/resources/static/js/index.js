@@ -30,7 +30,7 @@ function ajaxData(tag,currentPage){
                             '<h3>' + obj['title'] + '</h3>' +
                             '<ul>' +
                             '<li><span>' + obj['publisher'] + '</span></li>' +
-                            '<li><span>' + obj['publish_date'] + '</span></li>' +
+                            '<li><span>' + obj['publishDate'] + '</span></li>' +
                             '<li><span style="color:deeppink">' + '剩余' + obj['remain'] + '名额' + '</spanstyle></li>' +
                             '</ul>' +
                             '</div>' +
@@ -41,9 +41,9 @@ function ajaxData(tag,currentPage){
                             '</div>' +
                             '<div class="comments">' +
                             '<ul>' +
-                            '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="../static/img/views.png" title="view" /></a></li>' +
-                            '<li><a href="#" id="likes"><img src="../static/img/likes.png" title="likes" /></a></li>' +
-                            '<li><a href="contact.html" id="link"><img src="../static/img/link.png" title="link" /></a></li>' +
+                            '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="img/views.png" title="view" /></a></li>' +
+                            '<li><a href="#" id="likes"><img src="img/likes.png" title="likes" /></a></li>' +
+                            '<li><a href="contact.html" id="link"><img src="img/link.png" title="link" /></a></li>' +
                             '<li><a class="readmore" href="singlepage.html">ReadMore</a></li>' +
                             '</ul>' +
                             '</div>' +
@@ -58,10 +58,10 @@ function ajaxData(tag,currentPage){
                             '</div>' +
                             '<div class="modal-body">' +
                             '活动简介：' + obj['msg'] + '<br/>' +
-                            '活动时间：' + obj['act_time'] + '<br/>' +
+                            '活动时间：' + obj['activiteDate'] + '<br/>' +
                             '活动地点：' + obj['place'] + '<br/>' +
-                            '报名截止时间：' + obj['deadline'] + '<br/>' +
-                            '人数限制：' + obj['limit'] + '<br/>'
+                            '报名截止时间：' + obj['deadLine'] + '<br/>' +
+                            '人数限制：' + obj['personalLimit'] + '<br/>'
                             + '</div>' +
                             '<div class="modal-footer">' +
                             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
@@ -88,7 +88,7 @@ function ajaxData(tag,currentPage){
                         });
                         //点赞
                         $(".comments #likes").click(function () {
-                            $(this).html('<img src="../static/img/likes1.png" title="likes" /></a>');
+                            $(this).html('<img src="img/likes1.png" title="likes" /></a>');
                         });
 
 

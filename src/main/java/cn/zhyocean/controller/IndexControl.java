@@ -26,9 +26,9 @@ import java.io.IOException;
  * Describe:
  */
 @Controller
-public class Index {
+public class IndexControl {
 
-    private Logger logger = LoggerFactory.getLogger(Index.class);
+    private Logger logger = LoggerFactory.getLogger(IndexControl.class);
 
     @Autowired
     AuthControl authControl;
@@ -38,19 +38,21 @@ public class Index {
     @GetMapping("/")
     public String index(HttpServletRequest request,
                         Model model){
-        String token = (String) request.getSession().getAttribute("token");
-        //如果没有token，则重定向到auth获取易班token
-        if(token == null || token.isEmpty()){
-            return "redirect:/auth1";
-        }
-        Authorize authorize = new Authorize(YBOpen.APP_ID, YBOpen.APP_SECRET);
-        boolean tokenTime = authControl.isAuth(token);
-        if(!tokenTime){
-            return "redirect:/auth1";
-        }
-        User user = authControl.getUserInfo(token);
-        System.out.println("登录用户信息：" + user);
-        model.addAttribute("username",user.getUsername());
+//        String token = (String) request.getSession().getAttribute("token");
+////        如果没有token，则重定向到auth获取易班token
+//        if(token == null || token.isEmpty()){
+//            return "redirect:/auth1";
+//        }
+//        Authorize authorize = new Authorize(YBOpen.APP_ID, YBOpen.APP_SECRET);
+//        boolean tokenTime = authControl.isAuth(token);
+//        if(!tokenTime){
+//            return "redirect:/auth1";
+//        }
+//        User user = authControl.getUserInfo(token);
+//        System.out.println("登录用户信息：" + user);
+//        model.addAttribute("username",user.getUsername());
+        model.addAttribute("username","张海洋");
+        request.getSession().setAttribute("username", "张海洋");
         return "index";
     }
 
@@ -87,6 +89,11 @@ public class Index {
                                  @RequestParam("rows") String rows,
                                  @RequestParam("pageNo") String pageNo){
         return activiteService.findActiviteByTag(tag, rows, pageNo);
+    }
+
+    @GetMapping("/publisher")
+    public String publisher(){
+        return "publisher";
     }
 
 }
