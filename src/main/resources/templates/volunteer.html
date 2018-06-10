@@ -30,104 +30,33 @@
         <div class="top-nav">
             <ul>
                 <li><a href="index.html">主页</a></li>
+                <li class="article"><a href="#" id="#article">投稿</a></li>
                 <li class="record"><a href="#" id="#record">活动记录</a></li>
-                <li class="state"><a href="#" id="#state">报名状态</a></li>
-                <li class="article"><a href="#" id="#article">投稿(志愿者之声)</a></li>
                 <li class="apply"><a href="#" id="#apply">申请成为活动发布者</a></li>
+
+
             </ul>
         </div>
     </div>
     <!----start-content----->
     <div class="content">
         <div id="record">
-            <div class="grids">
-                <div class="grid box">
-                    <div class="grid-header">
-                        <h3>志愿林维护</h3>
-                        <ul>
-                            <li><span>校青志协,2018/3/15</span></li>
-                            <li><a href="#">5 comments</a></li>
-                        </ul>
-                    </div>
-                    <div class="grid-img-content">
-                        <a href="singlepage.html"><img src="../static/img/pic14.jpg" /></a>
-                        <p>春回大地，暖风袭袭
-                            新的一学期，青志协与你相约，
-                            在这春意盎然的季节，让我们一起用双手为这百花齐放的春增添一道绿色，
-                            为温柔的春风捎去树的清香，为青春的面庞带来一片阴凉。 <a href="#">...</a></p>
-                        <div class="clear"> </div>
-                    </div>
-                    <div class="comments">
-                        <ul>
+            <p class="text-center">活动记录</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>活动名称</th>
+                    <th>活动时间</th>
+                    <th>活动地点</th>
+                    <th>活动类型</th>
+                    <th>活动介绍</th>
+                </tr>
+                </thead>
+                <tbody id="recordTable">
 
-                            <li><a href="#"><img src="../static/img/link.png" title="link" /><span class="data">活动照片</span></a></li>
-                            <li><a class="readmore" href="singlepage.html">ReadMore</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="grid box">
-                    <div class="grid-header">
-                        <h3>为动物发声，做自然守护者</h3>
-                        <ul>
-                            <li><span>校志愿者协会,2018/4/18</span></li>
-                            <li><a href="#">5 comments</a></li>
-                        </ul>
-                    </div>
-                    <div class="grid-img-content">
-                        <a href="singlepage.html"><img src="../static/img/pic16.jpg"/></a>
-                        <p>2018年4月16日，主题为“为动物发声，做自然守护者”的活动在北京正式拉开帷幕。“为动物发声，做自然守护者” 系列活动包括IFAW联合雀巢咖啡中国推出的“为动物发声” H5、“自然的呼唤”野生动物主题儿童画展览等。<a href="#">...</a></p>
-                        <div class="clear"> </div>
-                    </div>
-                    <div class="comments">
-                        <ul>
-
-
-                            <li><a href="#"><img src="../static/img/link.png" title="link" /><span class="data">活动照片</span></a></a></li>
-                            <li><a class="readmore" href="singlepage.html">ReadMore</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="grid box">
-                    <div class="grid-header">
-                        <h3>关爱留守儿童 </h3>
-                        <ul>
-                            <li><span>计科院青年志愿者协会,2018/5/5</span></li>
-                            <li><a href="#">5 comments</a></li>
-                        </ul>
-                    </div>
-                    <div class="grid-img-content">
-                        <a href="singlepage.html"><img src="../static/img/pic15.jpg" /></a>
-                        <p>你喜欢和小朋友们一起做游戏吗？
-                            你是否有过与社区居民们共同互动的体验？
-                            你愿意展示自己，并且为他人带去欢乐吗？
-                            机会来了本周六计科院青志协就将前往大丰社区，举办主题为“情入大丰”的体验活动<a href="#">...</a></p>
-                        <div class="clear"> </div>
-                    </div>
-                    <div class="comments">
-                        <ul>
-
-
-                            <li><a href="#"><img src="../static/img/link.png" title="link" /><span class="data">活动照片</span></a></a></li>
-                            <li><a class="readmore" href="singlepage.html">ReadMore</a></li>
-                        </ul>
-                    </div>
-                    <div class="clear"> </div>
-                </div>
-                <div class="clear"> </div>
-            </div>
-            <div class="clear"> </div>
-            <div class="content-pagenation">
-                <li><a href="#">Frist</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><span>....</span></a></li>
-                <li><a href="#">Last</a></li>
-                <div class="clear"> </div>
-            </div>
+                </tbody>
+            </table>
         </div>
-        <div id="state"></div>
         <div id="article"></div>
         <div id="apply">
             <form id="applyForm" name="applyForm">
@@ -137,12 +66,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="superior">直属上级</label>
+                    <label for="superior">所属部门</label>
                     <input type="text" class="form-control" id="superior" name="superior">
                 </div>
                 <div class="form-group">
                     <input type="file" id="evidence" name="evidence">
-                    <p class="help-block">请出具证明的图片.</p>
+                    <p class="help-block">请上传证明的图片,等待管理员审核</p>
                 </div>
                 <button type="submit" class="btn btn-primary" id="applyBtn">提交</button>
             </form>

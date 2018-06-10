@@ -81,14 +81,15 @@ function ajaxData(tag,currentPage){
                                 ajaxData(tag, currentPage);
                             }
                         });
+                        var thisTxt=$(".grid-img-content").eq(obj['id']).find("p");
                         //查看全文
-                        $(".grid-img-content p").click(function () {
+                        thisTxt.click(function () {
                             $(this).html(obj['msg']);
-                        })
+                        });
                         //点赞
                         $(".comments #likes").click(function () {
                             $(this).html('<img src="../static/img/likes1.png" title="likes" /></a>');
-                        })
+                        });
 
 
                     }

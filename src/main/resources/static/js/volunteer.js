@@ -1,6 +1,9 @@
 /**
  * Created by 杨玉卿 on 2018/6/10.
  */
+$("#apply").hide();
+$("#article").hide();
+ajaxData();
 $(".top-nav li").click(function(){
     var flag=$(this).attr('class');
     $("#record").hide();
@@ -44,4 +47,47 @@ $("#applyBtn").click(function(event){
         })
     }
 
+});
+function ajaxData(){
+    $.ajax({
+        type:"get",
+        url:"/",
+        dataType:"json",
+        success:function(data){
+            var oDiv=$("#recordTable");
+            oDiv.html("");
+            if(data.length==0){
+                oDiv.html("<h3>目前还没有您的活动记录..orz</h3>");
+            }
+            else{
+                $.each(data,function(index,obj) {
+                    var str = obj['msg'];
+                    //限制显示词数，点击后显示所有词
+                    if (obj['msg'].length >= 10) {
+                        str = obj['msg'].substring(1, 10) + "...";
+                    }
+                    oDiv.append($(
+                        '<tr>' +
+                        '<td>' + obj['title'] + '</td>' +
+                        '<td>' + obj['act_time'] + '</td>' +
+                        '<td>'+obj['place']+'</td>' +
+                        '<td class="msg">'+str+'</td>' +
+                        '<td>'+obj['type']+'</td>' +
+                        '</tr>'));
+                    //查看全文
+                    var thisTxt=$("#recordTable").find("tr").eq(obj['id']).find(".msg");
+                    thisTxt.click(function(){
+                        $(this).html(obj['msg']);
+                    })
+                })
+            }
+        },
+        error:function(xhr,msg){
+            alert(msg);
+        }
+    })
+}
+//活动记录
+$(".record").click(function(){
+    ajaxData();
 });

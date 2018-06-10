@@ -35,10 +35,10 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8em;
     color: rgb(155, 155, 155);
-    box-shadow: 0.3px 0.3px 4px rgb(255, 214, 214);
+    box-shadow: 0.3px 0.3px 4px rgb(255, 155, 155);
 }
 .contact-form label{
-    color: rgb(155, 155, 155);
+    color: rgb(115, 115, 115);
     font-size: 0.8em;
     margin: 4px 20px;
 }
@@ -52,7 +52,7 @@
     margin-top:20px;
     font-size: 0.8em;
     font-family: 'Merriweather Sans', sans-serif;
-    background:lightblue;
+    background:cornflowerblue;
     color:#fff;
     cursor:pointer;
     -webkit-transition: all .5s;
