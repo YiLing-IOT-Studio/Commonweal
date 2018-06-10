@@ -1,7 +1,13 @@
 .wrap{
     width:90%;
 }
+.radio-inline{
+    margin:0 22px 10px;
 
+}
+.radio_box span{
+    text-align:left;
+}
 .content{
     width:80%;
 }

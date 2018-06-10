@@ -15,6 +15,9 @@ function ajaxData(tag,currentPage){
             var rows=3;
             var oDiv = $(".grids");
             oDiv.html('');
+            if(data.length==0){
+                oDiv.html("<h3>平台刚上线，还没有活动发布~</h3>");
+            }
             $.each(data,function(index,obj) {
                 var str=obj['msg'];
                 //限制显示词数，点击后显示所有词

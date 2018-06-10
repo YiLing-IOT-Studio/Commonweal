@@ -146,9 +146,18 @@ function ajaxData(currentPage){
     })
 }
 //初始时，所有数据
-ajaxData(1);
+// ajaxData(1);
 //活动记录
 $("#record").click(function(){
-    ajaxData(1);
-});
+    // ajaxData(1);
 
+});
+$(".top-nav li").click(function(){
+    var flag=$(this).attr('class');
+    $("#publish").hide();
+    $("#record").hide();
+    $("#picture").hide();
+    $("#list").hide();
+    $("#news").hide();
+    $("#"+flag).show();
+});

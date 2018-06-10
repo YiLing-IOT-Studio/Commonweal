@@ -31,18 +31,17 @@
         <div class="top-nav">
             <ul>
                 <li><a href="index.html">主页</a></li>
-                <li><a href="#publish" data-toggle="tab">发布活动</a></li>
-                <li><a href="#record" data-toggle="tab">活动记录</a></li>
-                <li><a href="#picture" data-toggle="tab">活动照片</a></li>
-                <li><a href="#list" data-toggle="tab">活动名单</a></li>
-                <li><a href="#news" data-toggle="tab">新闻稿</a></li>
+                <li class="publish"><a href="#publish">发布活动</a></li>
+                <li class="record"><a href="#record">活动记录</a></li>
+                <li class="picture"><a href="#picture">活动照片</a></li>
+                <li class="list"><a href="#list">活动名单</a></li>
+                <li class="news"><a href="#news">新闻稿</a></li>
             </ul>
         </div>
     </div>
     <!----start-content----->
     <div class="content">
-        <div class="tab-content">
-            <div class="tab-pane fade in active" id="record">
+        <div id="record">
                 <div class="grids">
                     <div class="grid box">
                         <div class="grid-header">
@@ -139,55 +138,67 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="publish">
+        <div id="publish">
                 <form id="publishForm" name="publishForm">
                     <div class="form-group">
                         <label for="act_name">活动名称</label>
-                        <input type="text" class="form-control" id="act_name">
+                        <input type="text" class="form-control" id="act_name" name="title">
                     </div>
+
                     <div class="form-group">
                         <label for="act_time">活动时间</label>
-                        <input type="text" class="form-control" id="act_time">
+                        <input type="text" class="form-control" id="act_time" name="act_time">
                     </div>
                     <div class="form-group">
                         <label for="act_place">活动地点</label>
-                        <input type="text" class="form-control" id="act_place">
+                        <input type="text" class="form-control" id="act_place" name="place">
                     </div>
                     <div class="form-group">
                         <label for="act_deadline">报名截止时间</label>
-                        <input type="text" class="form-control" id="act_deadline">
+                        <input type="text" class="form-control" id="act_deadline" name="deadline">
                     </div>
                     <div class="form-group">
                         <label for="act_limit">人数限制</label>
-                        <input type="text" class="form-control" id="act_limit">
+                        <input type="text" class="form-control" id="act_limit" name="limit">
                     </div>
                     <div class="form-group">
                         <label for="act_msg">活动介绍</label>
-                        <textarea class="form-control" id="act_msg"></textarea>
+                        <textarea class="form-control" id="act_msg" name="msg"></textarea>
+                    </div>
+
+                    <div class="radio_box">
+                    <span>活动类型</span>
+                    <label class="radio-inline">
+                        <input type="radio" name="type"  value="option1">社区服务
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="type" value="option2"> 主题宣传
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="type" value="option3"> 爱心募捐
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="type" value="option1"> 环境保护
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="type" value="option2"> 弱势群体
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="type" value="option3"> 爱心探访
+                    </label>
                     </div>
                     <div class="form-group">
-                        <input type="file" id="InputFile">
+                        <input type="file" id="InputFile" name="img">
                         <p class="help-block">请选择一张配图.</p>
                     </div>
                     <button type="submit" class="btn btn-primary" id="pub_btn">发布</button>
                 </form>
             </div>
-            <div class="tab-pane fade" id="picture"></div>
-            <div class="tab-pane fade" id="list"></div>
-            <div class="tab-pane fade" id="news"></div>
-        </div>
-
-        <div class="clear"> </div>
-
-
-
-
-        <div class="clear"> </div>
-
-        <!---end-sidebar---->
-
-        <!---end-wrap---->
-    </div></div>
+        <div id="picture"></div>
+        <div id="list"></div>
+        <div id="news"></div>
+    </div>
+</div>
 
 <script src="../static/js/publisher.js"></script>
 <script></script>
