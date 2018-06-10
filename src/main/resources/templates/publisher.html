@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>易公益</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png"/>
-    <link rel="stylesheet" href="lib/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/publisher.css"/>
-    <script src="lib/jquery-3.2.1.min.js"></script>
-    <script src="lib/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/favicon.png"/>
+    <link rel="stylesheet" href="../static/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/publisher.css"/>
+    <script src="../static/lib/jquery-3.2.1.min.js"></script>
+    <script src="../static/lib/bootstrap.min.js"></script>
 
 
 
 </head>
 <body>
 <nav>
-    <a href="index.html"><img src="img/branch.png"/></a>
+    <a href="index.html"><img src="../static/img/branch.png"/></a>
 </nav>
 <!---start-wrap---->
 <div class="wrap">
@@ -25,7 +25,7 @@
     <!---start-sidebar---->
     <div class="left-sidebar">
         <div class="logo">
-            <a href="index.html"><img src="img/logo.png" title="logo" /></a>
+            <a href="index.html"><img src="../static/img/logo.png" title="logo" /></a>
         </div>
         <div class="top-nav">
             <ul>
@@ -43,24 +43,89 @@
         <div class="grids">
             <form>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                    <label for="act_name">活动名称</label>
+                    <input type="text" class="form-control" id="act_name">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="act_time">活动时间</label>
+                    <input type="text" class="form-control" id="act_time">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
+                    <label for="act_place">活动地点</label>
+                    <input type="text" class="form-control" id="act_place">
+                </div>
+                <div class="form-group">
+                    <label for="act_deadline">报名截止时间</label>
+                    <input type="text" class="form-control" id="act_deadline">
+                </div>
+                <div class="form-group">
+                    <label for="act_limit">人数限制</label>
+                    <input type="text" class="form-control" id="act_limit">
+                </div>
+                <div class="form-group">
+                    <label for="act_msg">活动简介</label>
+                    <textarea class="form-control" rows="3" id="act_msg"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">上传</label>
                     <input type="file" id="exampleInputFile">
-                    <p class="help-block">Example block-level help text here.</p>
+                    <p class="help-block">请上传一张活动宣传图片.</p>
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Check me out
-                    </label>
+                <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                            <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                            <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+                        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+                        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+                        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+                        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+                        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+                        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+                        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+                        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+                        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
+                        <div class="dropdown-menu input-append">
+                            <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+                            <button class="btn" type="button">Add</button>
+                        </div>
+                        <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
+                    </div>
+
+                    <div class="btn-group">
+                        <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
+                        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+                        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+                    </div>
+                    <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <div id="editor">
+                    Go ahead&hellip;
+                </div>
+                <button type="submit" class="btn btn-default">发布</button>
             </form>
             <div class="grid box">
                 <div class="grid-header">
@@ -71,7 +136,7 @@
                     </ul>
                 </div>
                 <div class="grid-img-content">
-                    <a href="singlepage.html"><img src="img/pic14.jpg" /></a>
+                    <a href="singlepage.html"><img src="../static/img/pic14.jpg" /></a>
                     <p>春回大地，暖风袭袭
                         新的一学期，青志协与你相约，
                         在这春意盎然的季节，让我们一起用双手为这百花齐放的春增添一道绿色，
@@ -81,7 +146,7 @@
                 <div class="comments">
                     <ul>
 
-                        <li><a href="#"><img src="img/link.png" title="link" /><span class="data">活动资料</span></a></li>
+                        <li><a href="#"><img src="../static/img/link.png" title="link" /><span class="data">活动资料</span></a></li>
                         <li><a class="readmore" href="singlepage.html">ReadMore</a></li>
                     </ul>
                 </div>
@@ -95,7 +160,7 @@
                     </ul>
                 </div>
                 <div class="grid-img-content">
-                    <a href="singlepage.html"><img src="img/pic16.jpg"/></a>
+                    <a href="singlepage.html"><img src="../static/img/pic16.jpg"/></a>
                     <p>2018年4月16日，主题为“为动物发声，做自然守护者”的活动在北京正式拉开帷幕。“为动物发声，做自然守护者” 系列活动包括IFAW联合雀巢咖啡中国推出的“为动物发声” H5、“自然的呼唤”野生动物主题儿童画展览等。<a href="#">...</a></p>
                     <div class="clear"> </div>
                 </div>
@@ -103,7 +168,7 @@
                     <ul>
 
 
-                        <li><a href="#"><img src="img/link.png" title="link" /><span class="data">活动资料</span></a></a></li>
+                        <li><a href="#"><img src="../static/img/link.png" title="link" /><span class="data">活动资料</span></a></a></li>
                         <li><a class="readmore" href="singlepage.html">ReadMore</a></li>
                     </ul>
                 </div>
@@ -118,7 +183,7 @@
                     </ul>
                 </div>
                 <div class="grid-img-content">
-                    <a href="singlepage.html"><img src="img/pic15.jpg" /></a>
+                    <a href="singlepage.html"><img src="../static/img/pic15.jpg" /></a>
                     <p>你喜欢和小朋友们一起做游戏吗？
                         你是否有过与社区居民们共同互动的体验？
                         你愿意展示自己，并且为他人带去欢乐吗？
@@ -129,7 +194,7 @@
                     <ul>
 
 
-                        <li><a href="#"><img src="img/link.png" title="link" /><span class="data">活动资料</span></a></a></li>
+                        <li><a href="#"><img src="../static/img/link.png" title="link" /><span class="data">活动资料</span></a></a></li>
                         <li><a class="readmore" href="singlepage.html">ReadMore</a></li>
                     </ul>
                 </div>
@@ -157,5 +222,8 @@
 
         <!---end-wrap---->
     </div></div>
+<script src="../static/js/bootstrap-wyswyg.js"></script>
+<script src="../static/js/publisher.js"></script>
+<script></script>
 </body>
 </html>

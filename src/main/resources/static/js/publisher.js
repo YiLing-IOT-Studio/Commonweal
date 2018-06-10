@@ -127,4 +127,3 @@ ajaxData(1);
 $("#record").click(function(){
     ajaxData(1);
 });
-//
