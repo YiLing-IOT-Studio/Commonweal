@@ -33,4 +33,7 @@ public interface ActiviteMapper {
 
     @Select("select count(*) from activite")
     int countAllActivite();
+
+    @Select("select * from activite where publisher=#{publisher}")
+    List<Activite> getAllActiviteByPublisher(@Param("publisher") String publisher);
 }

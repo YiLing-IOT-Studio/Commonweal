@@ -4,6 +4,8 @@ import cn.zhyocean.model.Activite;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author: zhangocean
  * @Date: 2018/6/9 16:31
@@ -24,4 +26,11 @@ public interface ActiviteService {
      * @param activite 活动实体类
      */
     void insertActivite(Activite activite);
+
+    /**
+     * 通过发布者获得所有活动
+     * @param publisher 发布者
+     * @return 该发布者发布的所有活动
+     */
+    JSONArray getAllActiviteByPublisher(String publisher);
 }

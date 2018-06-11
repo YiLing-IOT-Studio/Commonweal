@@ -38,21 +38,20 @@ public class IndexControl {
     @GetMapping("/")
     public String index(HttpServletRequest request,
                         Model model){
-//        String token = (String) request.getSession().getAttribute("token");
-////        如果没有token，则重定向到auth获取易班token
-//        if(token == null || token.isEmpty()){
-//            return "redirect:/auth1";
-//        }
-//        Authorize authorize = new Authorize(YBOpen.APP_ID, YBOpen.APP_SECRET);
-//        boolean tokenTime = authControl.isAuth(token);
-//        if(!tokenTime){
-//            return "redirect:/auth1";
-//        }
-//        User user = authControl.getUserInfo(token);
-//        System.out.println("登录用户信息：" + user);
-//        model.addAttribute("username",user.getUsername());
-        model.addAttribute("username","张海洋");
-        request.getSession().setAttribute("username", "张海洋");
+        String token = (String) request.getSession().getAttribute("token");
+//        如果没有token，则重定向到auth获取易班token
+        if(token == null || token.isEmpty()){
+            return "redirect:/auth1";
+        }
+        Authorize authorize = new Authorize(YBOpen.APP_ID, YBOpen.APP_SECRET);
+        boolean tokenTime = authControl.isAuth(token);
+        if(!tokenTime){
+            return "redirect:/auth1";
+        }
+        model.addAttribute("username",request.getSession().getAttribute("username"));
+        System.out.println("session过期设置时间："+ request.getSession().getMaxInactiveInterval());
+
+        System.out.println("username is " + request.getSession().getAttribute("username"));
         return "index";
     }
 
@@ -72,6 +71,7 @@ public class IndexControl {
         String token = (String) request.getSession().getAttribute("token");
         String status = authorize.getManInstance(token).revoke();
         request.getSession().removeAttribute("token");
+        request.getSession().removeAttribute("username");
         JSONObject jsonObject = JSONObject.fromObject(status);
 
         if(jsonObject.get("status").equals(Status.STATUS200)){
@@ -83,6 +83,19 @@ public class IndexControl {
         return "500";
     }
 
+    public String logoutBySystem(String username,HttpServletRequest request){
+        System.out.println("logogutbysystem 的username:" + username);
+        String token = (String) request.getSession().getAttribute("token");
+        System.out.println("logogutbysystem 的token:" + token);
+        if(!authControl.isAuth(token)){
+            return "redirect:/auth1";
+        }
+        if(username == null){
+            return "redirect:/auth1";
+        }
+        return "yes";
+    }
+
     @ResponseBody
     @GetMapping("/getActivite")
     public JSONArray getActivite(@RequestParam("tag") String tag,
@@ -92,8 +105,27 @@ public class IndexControl {
     }
 
     @GetMapping("/publisher")
-    public String publisher(){
+    public String publisher(HttpServletRequest request){
+        String usernameIsTimeOut = logoutBySystem((String) request.getSession().getAttribute("username"), request);
+        System.out.println("username is " + request.getSession().getAttribute("username"));
         return "publisher";
     }
+
+    @GetMapping("/volunteer")
+    public String volunteer(HttpServletRequest request){
+        String usernameIsTimeOut = logoutBySystem((String) request.getSession().getAttribute("username"), request);
+        System.out.println("username is " + request.getSession().getAttribute("username"));
+
+        return "volunteer";
+    }
+
+    @GetMapping("/manager")
+    public String manager(HttpServletRequest request){
+        String usernameIsTimeOut = logoutBySystem((String) request.getSession().getAttribute("username"), request);
+        System.out.println("username is " + request.getSession().getAttribute("username"));
+
+        return "manager";
+    }
+
 
 }

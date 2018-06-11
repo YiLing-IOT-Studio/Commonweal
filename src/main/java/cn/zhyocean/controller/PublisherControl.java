@@ -4,10 +4,12 @@ import cn.zhyocean.model.Activite;
 import cn.zhyocean.service.ActiviteService;
 import cn.zhyocean.utils.FileUtil;
 import cn.zhyocean.utils.TimeUtil;
+import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,5 +66,15 @@ public class PublisherControl {
 
         return 0;
     }
+
+    @GetMapping("/getAllActivite")
+    @ResponseBody
+    public JSONArray getAllActiviteByPublisher(HttpServletRequest request){
+        String publisher = (String) request.getSession().getAttribute("username");
+        return activiteService.getAllActiviteByPublisher(publisher);
+    }
+
+//    public JSONArray getApply
+
 
 }

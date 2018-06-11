@@ -5,7 +5,7 @@
 $.ajax({
     type:"get",
     dataType:"json",
-    url:"/",
+    url:"/getTissue",
     success:function(data){
         var oDiv=$(".grid");
         oDiv.html('');
@@ -40,7 +40,7 @@ $(".cancel").click(function(){
 
     $.ajax({
         type:"post",
-        url:"/",
+        url:"/deleteOrgByApplyName",
         data:{
             "cancelName":cancelName
         },
@@ -63,7 +63,7 @@ $("#reply").click(function(){
     $.ajax({
         type:"get",
         dataType:"json",
-        url:"/",
+        url:"/checkApplyTissue",
         success:function(data){
             var oDiv=$(".grid");
             oDiv.html('');
@@ -100,7 +100,7 @@ var applyName=section.find(".applyName").html();
 var signal=$(this).html();
     $.ajax({
         type:"post",
-        url:"/",
+        url:"/agreeForTissue",
         dataType:"json",
         data:{
             'applyName':applyName,

@@ -15,8 +15,9 @@ $(".top-nav li").click(function(){
 //提交申请
 $("#applyBtn").click(function(event){
     event.preventDefault();
-    var applyForm = new FormData(applyForm);
-    if($("#orgName").val()==""){
+    var formElement=document.querySelector("#applyForm");
+    var applyForm= new FormData(formElement);
+    if($("#applyName").val()==""){
         alert("请填写组织名称");
     }
     else if($("#superior").val()==""){
@@ -28,7 +29,7 @@ $("#applyBtn").click(function(event){
     else {
         $.ajax({
             type:"post",
-            url:"/",
+            url:"/applyformanager",
             dataType:"json",
             data:applyForm,
             processData:false,

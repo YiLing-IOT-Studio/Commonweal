@@ -17,7 +17,8 @@ $(".top-nav li").click(function(){
 //发布活动，传数据
 $("#pub_btn").click(function(event){
         event.preventDefault();
-        var activity_form=new FormData(publishForm);
+        var formData=document.querySelector("#publishForm");
+        var activity_form=new FormData(formData);
         if($("#act_name").val()==""){
             alert("请填写活动名称！");
         }
@@ -71,7 +72,7 @@ $("#pub_btn").click(function(event){
 $(".record").click(function(){
    $.ajax({
        type:"get",
-       url:"/",
+       url:"/getAllActivite",
        dataType:"json",
        success:function(data){
            var oDiv=$("#recordTable");
@@ -89,13 +90,15 @@ $(".record").click(function(){
                    oDiv.append($(
                        '<tr>' +
                        '<td>' + obj['title'] + '</td>' +
-                       '<td>' + obj['act_time'] + '</td>' +
+                       '<td>' + obj['activiteDate'] + '</td>' +
                        '<td>'+obj['place']+'</td>' +
+                       '<td>'+obj['category']+'</td>' +
                        '<td class="msg">'+str+'</td>' +
-                       '<td>'+obj['type']+'</td>' +
+
                        '</tr>'));
                    //查看全文
-                   var thisTxt=$("#recordTable").find("tr").eq(obj['id']).find(".msg");
+
+                   var thisTxt=$("#recordTable").find("tr").eq(index).find(".msg");
                    thisTxt.click(function(){
                        $(this).html(obj['msg']);
                    })
@@ -109,10 +112,10 @@ $(".record").click(function(){
 
 });
 
-//获取发布的活动
+//获取活动名
 $.ajax({
         type:"get",
-        url:"/",
+        url:"/getAllActivite",
         dataType:"json",
         success:function(data){
             var oDiv=$("#checkActivity");

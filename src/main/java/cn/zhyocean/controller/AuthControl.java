@@ -48,6 +48,8 @@ public class AuthControl {
             //保存授权信息
             String token = (String) jsonObject.get("access_token");
             request.getSession().setAttribute("token",token);
+            User user = getUserInfo(token);
+            request.getSession().setAttribute("username",user.getUsername());
             return "redirect:/";
         }else {
             model.addAttribute("auth_error","对不起，授权验证失败，请重试！");
@@ -84,13 +86,23 @@ public class AuthControl {
      * @return true--没有过期    false--过期
      */
     public boolean isAuth(String token){
+        int tokenExpireIn = getTokenTime(token);
+        TimeUtil timeUtil = new TimeUtil();
+        System.out.println("token剩余秒数:" + timeUtil.longToStrTime(tokenExpireIn));
+        return tokenExpireIn > 0;
+    }
+
+    /**
+     * 获得token过期时间
+     * @param token 用户授权凭证
+     * @return token过期时间
+     */
+    public int getTokenTime(String token){
         Authorize authorize = new Authorize(YBOpen.APP_ID, YBOpen.APP_SECRET);
         String tokenInfo = authorize.getManInstance(token).query();
         JSONObject jsonObject = JSONObject.fromObject(tokenInfo);
         int tokenExpireIn = (int) jsonObject.get("expire_in");
-        TimeUtil timeUtil = new TimeUtil();
-        System.out.println("token剩余秒数:" + timeUtil.longToStrTime(tokenExpireIn));
-        return tokenExpireIn > 0;
+        return tokenExpireIn;
     }
 
 }

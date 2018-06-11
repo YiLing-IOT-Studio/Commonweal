@@ -52,6 +52,13 @@ public class ActiviteServiceImpl implements ActiviteService {
         System.out.println("公益活动信息插入成功！");
     }
 
+    @Override
+    public JSONArray getAllActiviteByPublisher(String publisher) {
+        List<Activite> allActivites = activiteMapper.getAllActiviteByPublisher(publisher);
+        System.out.println("该发布者发布的所有活动：" + JSONArray.fromObject(allActivites));
+        return JSONArray.fromObject(allActivites);
+    }
+
     private Map<String, Integer> countActiviteByTag(String tag, int rows) {
         int countActivites = activiteMapper.countActiviteByTag(tag);
         System.out.println("通过标签 " + tag + " 查到了" + countActivites + "条数据");
