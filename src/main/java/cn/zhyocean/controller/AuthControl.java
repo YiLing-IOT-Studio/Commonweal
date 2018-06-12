@@ -2,7 +2,7 @@ package cn.zhyocean.controller;
 
 import cn.yiban.open.Authorize;
 import cn.zhyocean.constant.YBOpen;
-import cn.zhyocean.model.User;
+import cn.zhyocean.model.YBUser;
 import cn.zhyocean.utils.TimeUtil;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -48,8 +48,8 @@ public class AuthControl {
             //保存授权信息
             String token = (String) jsonObject.get("access_token");
             request.getSession().setAttribute("token",token);
-            User user = getUserInfo(token);
-            request.getSession().setAttribute("username",user.getUsername());
+            YBUser YBUser = getUserInfo(token);
+            request.getSession().setAttribute("username", YBUser.getUsername());
             return "redirect:/";
         }else {
             model.addAttribute("auth_error","对不起，授权验证失败，请重试！");
@@ -62,7 +62,7 @@ public class AuthControl {
      * @param token 用户凭证
      * @return 用户信息
      */
-    public User getUserInfo(String token){
+    public YBUser getUserInfo(String token){
         cn.yiban.open.common.User yiBanUser = new cn.yiban.open.common.User(token);
         String userResult = yiBanUser.me();
         JSONObject returnObject = JSONObject.fromObject(userResult);
@@ -75,8 +75,8 @@ public class AuthControl {
         String ybMoney = (String) infoObject.get("yb_money");
         String ybSchoolId = (String) infoObject.get("yb_schoolid");
         String ybSchoolName = (String) infoObject.get("yb_schoolname");
-        User user = new User(ybUserId, ybUsername, ybUsernick, ybSex, ybMoney, ybSchoolId, ybSchoolName);
-        return user;
+        YBUser YBUser = new YBUser(ybUserId, ybUsername, ybUsernick, ybSex, ybMoney, ybSchoolId, ybSchoolName);
+        return YBUser;
 
     }
 

@@ -63,4 +63,9 @@ public class ManagerApplyServiceImpl implements ManagerApplyService{
            return 0;
        }
     }
+
+    @Override
+    public int getStatusByProposer(String proposer) {
+        return managerApplyMapper.getStatusByProposer(proposer);
+    }
 }

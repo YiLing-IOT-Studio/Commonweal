@@ -3,7 +3,6 @@ package cn.zhyocean.controller;
 import cn.yiban.open.Authorize;
 import cn.zhyocean.constant.Status;
 import cn.zhyocean.constant.YBOpen;
-import cn.zhyocean.model.User;
 import cn.zhyocean.service.ActiviteService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -87,11 +86,12 @@ public class IndexControl {
         System.out.println("logogutbysystem 的username:" + username);
         String token = (String) request.getSession().getAttribute("token");
         System.out.println("logogutbysystem 的token:" + token);
-        if(!authControl.isAuth(token)){
-            return "redirect:/auth1";
+        //判断本地session中token或username是否过期
+        if(username == null || username.isEmpty() || token == null || token.isEmpty()){
+            return "no";
         }
-        if(username == null){
-            return "redirect:/auth1";
+        if(!authControl.isAuth(token)){
+            return "no";
         }
         return "yes";
     }
@@ -107,14 +107,18 @@ public class IndexControl {
     @GetMapping("/publisher")
     public String publisher(HttpServletRequest request){
         String usernameIsTimeOut = logoutBySystem((String) request.getSession().getAttribute("username"), request);
-        System.out.println("username is " + request.getSession().getAttribute("username"));
+        if("no".equals(usernameIsTimeOut)){
+            return "redirect:/auth1";
+        }
         return "publisher";
     }
 
     @GetMapping("/volunteer")
     public String volunteer(HttpServletRequest request){
         String usernameIsTimeOut = logoutBySystem((String) request.getSession().getAttribute("username"), request);
-        System.out.println("username is " + request.getSession().getAttribute("username"));
+        if("no".equals(usernameIsTimeOut)){
+            return "redirect:/auth1";
+        }
 
         return "volunteer";
     }
@@ -122,7 +126,9 @@ public class IndexControl {
     @GetMapping("/manager")
     public String manager(HttpServletRequest request){
         String usernameIsTimeOut = logoutBySystem((String) request.getSession().getAttribute("username"), request);
-        System.out.println("username is " + request.getSession().getAttribute("username"));
+        if("no".equals(usernameIsTimeOut)){
+            return "redirect:/auth1";
+        }
 
         return "manager";
     }

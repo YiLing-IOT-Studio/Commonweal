@@ -41,4 +41,11 @@ public interface ManagerApplyService {
      * @return 删除结果
      */
     int deleteOrgByApplyName(String applyName);
+
+    /**
+     * 通过申请人获得申请状态
+     * @param proposer 申请人
+     * @return 申请状态
+     */
+    int getStatusByProposer(String proposer);
 }

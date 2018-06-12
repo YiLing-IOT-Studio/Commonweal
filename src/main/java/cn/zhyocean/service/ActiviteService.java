@@ -33,4 +33,19 @@ public interface ActiviteService {
      * @return 该发布者发布的所有活动
      */
     JSONArray getAllActiviteByPublisher(String publisher);
+
+    /**
+     * 通过发布者获得其发布的所有活动名
+     * @param publsiher 发布者
+     * @return 活动名的数组
+     */
+    JSONArray getActiviteNamesByPublisher(String publsiher);
+
+    /**
+     * 通过活动名和发布者获得活动id
+     * @param title 活动名
+     * @param publisher 发布者
+     * @return 活动id
+     */
+    int getIdByTitleAndPublisher(String title, String publisher);
 }

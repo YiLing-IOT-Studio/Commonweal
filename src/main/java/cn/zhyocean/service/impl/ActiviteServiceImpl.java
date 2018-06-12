@@ -7,6 +7,7 @@ import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,20 @@ public class ActiviteServiceImpl implements ActiviteService {
         List<Activite> allActivites = activiteMapper.getAllActiviteByPublisher(publisher);
         System.out.println("该发布者发布的所有活动：" + JSONArray.fromObject(allActivites));
         return JSONArray.fromObject(allActivites);
+    }
+
+    @Override
+    public JSONArray getActiviteNamesByPublisher(String publsiher) {
+        List<String> activiteNames = activiteMapper.getActiviteNames(publsiher);
+
+        JSONArray jsonArray = JSONArray.fromObject(activiteNames);
+        System.out.println("该发布者发布的活动名有：" + jsonArray);
+        return jsonArray;
+    }
+
+    @Override
+    public int getIdByTitleAndPublisher(String title, String publisher) {
+        return activiteMapper.getIdByTitleAndPublisher(title, publisher);
     }
 
     private Map<String, Integer> countActiviteByTag(String tag, int rows) {

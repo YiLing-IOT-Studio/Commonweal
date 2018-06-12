@@ -1,10 +1,13 @@
 package cn.zhyocean.controller;
 
 import cn.zhyocean.model.Activite;
+import cn.zhyocean.service.ActiviteApplyService;
 import cn.zhyocean.service.ActiviteService;
+import cn.zhyocean.service.UserService;
 import cn.zhyocean.utils.FileUtil;
 import cn.zhyocean.utils.TimeUtil;
 import net.sf.json.JSONArray;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.crypto.interfaces.PBEKey;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author: zhangocean
@@ -29,6 +34,10 @@ public class PublisherControl {
 
     @Autowired
     ActiviteService activiteService;
+    @Autowired
+    ActiviteApplyService activiteApplyService;
+    @Autowired
+    UserService userService;
 
     @PostMapping("/publisher")
     @ResponseBody
@@ -74,7 +83,25 @@ public class PublisherControl {
         return activiteService.getAllActiviteByPublisher(publisher);
     }
 
-//    public JSONArray getApply
+    @GetMapping("/getActiviteNames")
+    @ResponseBody
+    public JSONArray getActiviteNamesByPublisher(HttpServletRequest request){
+        String publisher = (String) request.getSession().getAttribute("username");
+
+        return activiteService.getActiviteNamesByPublisher(publisher);
+    }
+
+    @PostMapping("/getpersonalinfo")
+    @ResponseBody
+    public JSONArray getPersonalInfo(@Param("activityName") String activityName,
+                                     HttpServletRequest request){
+        String publisher = (String) request.getSession().getAttribute("username");
+        int activiteId = activiteService.getIdByTitleAndPublisher(activityName, publisher);
+        List<Integer> userIds = activiteApplyService.getUserIdByActiviteIdAndStatus(activiteId, 1);
+        System.out.println(userIds);
+        return userService.getByYbIds(userIds);
+
+    }
 
 
 }

@@ -52,7 +52,7 @@ $("#applyBtn").click(function(event){
 function ajaxData(){
     $.ajax({
         type:"get",
-        url:"/",
+        url:"/getmyactivites",
         dataType:"json",
         success:function(data){
             var oDiv=$("#recordTable");
@@ -70,10 +70,10 @@ function ajaxData(){
                     oDiv.append($(
                         '<tr>' +
                         '<td>' + obj['title'] + '</td>' +
-                        '<td>' + obj['act_time'] + '</td>' +
+                        '<td>' + obj['activiteDate'] + '</td>' +
                         '<td>'+obj['place']+'</td>' +
+                        '<td>'+obj['category']+'</td>' +
                         '<td class="msg">'+str+'</td>' +
-                        '<td>'+obj['type']+'</td>' +
                         '</tr>'));
                     //查看全文
                     var thisTxt=$("#recordTable").find("tr").eq(obj['id']).find(".msg");
@@ -95,7 +95,7 @@ $(".record").click(function(){
 $(".msg").click(function(){
     $.ajax({
         type:"get",
-        url:"/",
+        url:"/getapplyinfo",
         dataType:"json",
         success:function(data){
             var oDiv=$("#msg");

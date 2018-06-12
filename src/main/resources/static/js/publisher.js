@@ -115,7 +115,7 @@ $(".record").click(function(){
 //获取活动名
 $.ajax({
         type:"get",
-        url:"/getAllActivite",
+        url:"/getActiviteNames",
         dataType:"json",
         success:function(data){
             var oDiv=$("#checkActivity");
@@ -142,7 +142,7 @@ $("#checkActivityBtn").click(function(){
     console.log(activityName);
     $.ajax({
         type:"post",
-        url:"/",
+        url:"/getpersonalinfo",
         dataType:"json",
         data:{
             "activityName":activityName

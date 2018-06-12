@@ -4,59 +4,47 @@ import lombok.Data;
 
 /**
  * @author: zhangocean
- * @Date: 2018/6/9 11:23
+ * @Date: 2018/6/12 13:50
  * Describe:
  */
 @Data
 public class User {
 
-    private long id;
+    private int id;
 
     /**
-     * 易班用户id
+     * 易班id
      */
-    private String userId;
+    private long ybId;
 
     /**
-     * 用户名
+     * 学号
      */
-    private String username;
+    private long stuId;
 
     /**
-     * 用户昵称
+     * 姓名
      */
-    private String userNick;
+    private String stuName;
 
     /**
-     * 性别
+     * 学院
      */
-    private String sex;
+    private String school;
 
     /**
-     * 持有网薪
+     * 专业
      */
-    private String money;
+    private String major;
 
     /**
-     * 所在学校id
+     * 年级
      */
-    private String schoolId;
+    private String grade;
 
     /**
-     * 所在学校名称
+     * 电话
      */
-    private String schoolName;
+    private String telephoneNumber;
 
-    public User() {
-    }
-
-    public User(String userId, String username, String userNick, String sex, String money, String schoolId, String schoolName) {
-        this.userId = userId;
-        this.username = username;
-        this.userNick = userNick;
-        this.sex = sex;
-        this.money = money;
-        this.schoolId = schoolId;
-        this.schoolName = schoolName;
-    }
 }

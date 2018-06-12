@@ -36,4 +36,13 @@ public interface ActiviteMapper {
 
     @Select("select * from activite where publisher=#{publisher}")
     List<Activite> getAllActiviteByPublisher(@Param("publisher") String publisher);
+
+    @Select("select * from activite where id=#{id}")
+    Activite getActiviteById(@Param("id") int id);
+
+    @Select("select title from activite where publisher=#{publisher}")
+    List<String> getActiviteNames(@Param("publisher") String publisher);
+
+    @Select("select id from activite where title=#{title} and publisher=#{publisher}")
+    int getIdByTitleAndPublisher(@Param("title") String title, @Param("publisher") String publisher);
 }

@@ -27,4 +27,7 @@ public interface ManagerApplyMapper {
 
     @Delete("delete from managerapply where applyName=#{applyName}")
     void deleteOrgByApplyName(@Param("applyName") String applyName);
+
+    @Select("select status from managerapply where proposer=#{proposer}")
+    int getStatusByProposer(@Param("proposer") String proposer);
 }
