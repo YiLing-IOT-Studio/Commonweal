@@ -13,13 +13,13 @@ function ajaxData(tag,currentPage){
         },
         success:function(data){
             var rows=3;
-            var oDiv = $(".grids");
+            var oDiv = $(".grids form");
             oDiv.html('');
             if(data.length==0){
                 oDiv.html("<h3>平台刚上线，还没有活动发布~</h3>");
             }
             else {
-                $.each(data, function (index, obj) {
+                $.each(data, function (index, obj){
                         var str = obj['msg'];
                         //限制显示词数，点击后显示所有词
                         if (obj['msg'].length >= 100) {
@@ -41,10 +41,10 @@ function ajaxData(tag,currentPage){
                             '</div>' +
                             '<div class="comments">' +
                             '<ul>' +
-                            '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="img/views.png" title="view" /></a></li>' +
-                            '<li><a href="#" id="likes"><img src="img/likes.png" title="likes" /></a></li>' +
-                            '<li><a href="contact.html" id="link"><img src="img/link.png" title="link" /></a></li>' +
-                            '<li><a class="readmore" href="singlepage.html">ReadMore</a></li>' +
+                                '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="img/views.png" title="view" /></a></li>' +
+                                '<li><a href="#" id="likes"><img src="img/likes.png" title="likes" /></a></li>' +
+                                '<li><a href="contact.html" id="link"><img src="img/link.png" title="link" /></a></li>' +
+                                '<li><label class="readmore"><input type="radio" name="activityName" class="myHiddenRadio" value="'+obj['title']+'"/>LearnMore</label></li>' +
                             '</ul>' +
                             '</div>' +
                             '</div>' +
@@ -54,22 +54,22 @@ function ajaxData(tag,currentPage){
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                            '<h4 class="modal-title" id="myModalLabel">' + obj['title'] + '</h4>' +
+                            '<h4 class="modal-title" id="myModalLabel">活动提示</h4>' +
                             '</div>' +
                             '<div class="modal-body">' +
-                            '活动简介：' + obj['msg'] + '<br/>' +
-                            '活动时间：' + obj['activiteDate'] + '<br/>' +
-                            '活动地点：' + obj['place'] + '<br/>' +
-                            '报名截止时间：' + obj['deadLine'] + '<br/>' +
-                            '人数限制：' + obj['personalLimit'] + '<br/>'
+                            '<p>'+'活动简介：' + obj['msg'] + '</p>' +
+                            '<p>活动时间：' + obj['activityDate'] + '<br/>' +
+                            '<p>活动地点：' + obj['place'] + '<br/>' +
+                            '<p>报名截止时间：' + obj['deadline'] + '<br/>' +
+                            '<p>人数限制：' + obj['personalLimit'] + '<br/>'
                             + '</div>' +
                             '<div class="modal-footer">' +
                             '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-                            '<button type="button" class="btn btn-primary"><a href="contact.html">立即报名</a></button>' +
                             '</div>' +
                             '</div>' +
                             '</div>' +
-                            '</div>'));
+                            '</div>')
+                        );
                         scrollTo(0, 0);//回到顶部
                         //分页
                         $("#pagination").paging({
@@ -81,10 +81,15 @@ function ajaxData(tag,currentPage){
                                 ajaxData(tag, currentPage);
                             }
                         });
-                        var thisTxt=$(".grid-img-content").eq(obj['id']).find("p");
+                        var thisTxt=$(".grid-img-content").eq(index).find("p");
                         //查看全文
                         thisTxt.click(function () {
                             $(this).html(obj['msg']);
+                        });
+                        //报名活动
+                        var thisBtn=$(".comments").eq(index).find(".readmore").parent();
+                        thisBtn.click(function(){
+
                         });
                         //点赞
                         $(".comments #likes").click(function () {
@@ -154,6 +159,13 @@ $.ajax({
 
     }
 });
+//点击LearnMore
+$(".myHiddenRadio").click(function(){
+    $("#learnMore").submit();
+});
+
+
+
 
 
 

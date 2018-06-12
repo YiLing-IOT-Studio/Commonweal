@@ -1,6 +1,17 @@
 /**
  * Created by 杨玉卿 on 2018/6/10.
  */
+$.ajax({
+    type:"get",
+    url:"/",
+    dataType:"json",
+    success:function(data){
+        $("#activityName").attr('value',data);
+    },
+    error:function(xhr,msg){
+        alert(msg);
+    }
+})
 $("#contactBtn").click(function(event){
     event.preventDefault();
     var patternId = /^\d{12}$/;
@@ -9,7 +20,8 @@ $("#contactBtn").click(function(event){
     var telephoneNumber=$("#telephoneNumber").val();
     var patternName= /^[\u4E00-\u9FA5A-Za-z]+$/;
     var stuName=$("#stuName").val();
-    var contactForm=new FormData(contactForm);
+    var formElement=document.querySelector("#contactForm");
+    var contactForm=new FormData(formElement);
     if(stuId==""||!patternId.test(stuId)){
         alert("请正确填写学号");
     }

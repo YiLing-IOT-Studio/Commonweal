@@ -18,7 +18,7 @@ $(".top-nav li").click(function(){
 $("#pub_btn").click(function(event){
         event.preventDefault();
         var formData=document.querySelector("#publishForm");
-        var activity_form=new FormData(formData);
+        var publishForm=new FormData(formData);
         if($("#act_name").val()==""){
             alert("请填写活动名称！");
         }
@@ -50,7 +50,7 @@ $("#pub_btn").click(function(event){
             $.ajax({
                 type:"post",
                 url:"/publisher",
-                data:activity_form,
+                data:publishForm,
                 processData:false,
                 contentType:false,
                 success:function(data){
@@ -90,7 +90,7 @@ $(".record").click(function(){
                    oDiv.append($(
                        '<tr>' +
                        '<td>' + obj['title'] + '</td>' +
-                       '<td>' + obj['activiteDate'] + '</td>' +
+                       '<td>' + obj['activityDate'] + '</td>' +
                        '<td>'+obj['place']+'</td>' +
                        '<td>'+obj['category']+'</td>' +
                        '<td class="msg">'+str+'</td>' +
