@@ -42,8 +42,6 @@ function ajaxData(tag,currentPage){
                             '<div class="comments">' +
                             '<ul>' +
                                 '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="img/views.png" title="view" /></a></li>' +
-                                '<li><a href="#" id="likes"><img src="img/likes.png" title="likes" /></a></li>' +
-                                '<li><a href="contact.html" id="link"><img src="img/link.png" title="link" /></a></li>' +
                                 '<li><label class="readmore"><input type="radio" name="activityName" class="myHiddenRadio" value="'+obj['title']+'"/>LearnMore</label></li>' +
                             '</ul>' +
                             '</div>' +
@@ -86,17 +84,6 @@ function ajaxData(tag,currentPage){
                         thisTxt.click(function () {
                             $(this).html(obj['msg']);
                         });
-                        //报名活动
-                        var thisBtn=$(".comments").eq(index).find(".readmore").parent();
-                        thisBtn.click(function(){
-
-                        });
-                        //点赞
-                        $(".comments #likes").click(function () {
-                            $(this).html('<img src="img/likes1.png" title="likes" /></a>');
-                        });
-
-
                     }
                 )
             }
@@ -152,11 +139,10 @@ $.ajax({
         $.each(data,function(index,obj){
             news.append($(' <div class="post-grid">'+
                 '<img src="'+obj['news_img']+'" title="post1">'+
-                '<p>Lorem ipsum dolor sit ametconsectetur dolor,'+'<a href="#">...</a></p>'+
+                '<p>'+obj['msg']+'<a href="#">...</a></p>'+
                 '<div class="clear"></div>'+
                 ' </div>'));
         })
-
     }
 });
 //点击LearnMore
