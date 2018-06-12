@@ -139,6 +139,7 @@ $.ajax({
 //查看活动名单
 $("#checkActivityBtn").click(function(){
     var activityName=$("#checkActivity").val();
+    console.log(activityName);
     $.ajax({
         type:"post",
         url:"/",

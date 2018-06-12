@@ -7,7 +7,7 @@ $.ajax({
     dataType:"json",
     url:"/getTissue",
     success:function(data){
-        var oDiv=$(".grid");
+        var oDiv=$(".grids");
         oDiv.html('');
         oDiv.append($('<table class="table table-striped">'+
             '<thead>'+
@@ -65,7 +65,7 @@ $("#reply").click(function(){
         dataType:"json",
         url:"/checkApplyTissue",
         success:function(data){
-            var oDiv=$(".grid");
+            var oDiv=$(".grids");
             oDiv.html('');
             oDiv.append($('<table class="table table-striped">'+
                 '<thead>'+
