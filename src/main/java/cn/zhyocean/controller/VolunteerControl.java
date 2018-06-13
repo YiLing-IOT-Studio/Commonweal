@@ -32,6 +32,12 @@ public class VolunteerControl {
     @Autowired
     ActiviteApplyService activiteApplyService;
 
+    /**
+     * 申请成为发布者
+     * @param request
+     * @param file
+     * @return
+     */
     @PostMapping("/applyformanager")
     @ResponseBody
     public int applyformanager(HttpServletRequest request,
@@ -55,6 +61,11 @@ public class VolunteerControl {
     }
 
 
+    /**
+     * 获得我的活动
+     * @param request
+     * @return
+     */
     @GetMapping("/getmyactivites")
     @ResponseBody
     public JSONArray getMyActivites(HttpServletRequest request){
@@ -68,6 +79,11 @@ public class VolunteerControl {
         return activiteApplyService.getAllActivitesByActiviteId(activiteIds);
     }
 
+    /**
+     * 获得申请信息
+     * @param request
+     * @return
+     */
     @GetMapping("/getapplyinfo")
     @ResponseBody
     public String getApplyInfo(HttpServletRequest request){
@@ -75,13 +91,15 @@ public class VolunteerControl {
         int result = managerApplyService.getStatusByProposer(username);
         System.out.println(result);
         if(result == 0){
-            return "";
+            return "0";
         } else if(result == 1){
-            return "同意";
+            return "1";
         } else if(result == -1){
-            return "拒绝";
+            return "2";
+        } else if (result == 2){
+            return "0";
         }
-        return "";
+        return "0";
     }
 
 }

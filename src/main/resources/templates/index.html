@@ -6,10 +6,10 @@
     <title>易公益</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png"/>
-    <link rel="stylesheet" href="../static/lib/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <script src="../static/lib/jquery-3.2.1.min.js"></script>
-    <script src="../static/lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
 
 
 
@@ -27,6 +27,7 @@
         </button>
 
         <ul class="dropdown-menu text-left">
+
             <li><a href="/volunteer">志愿者</a></li>
             <li><a href="/publisher">发布活动者</a></li>
             <li><a href="manager.html">管理员</a></li>
@@ -46,13 +47,13 @@
         </div>
         <div class="top-nav">
             <ul>
-                <li><a href="javascript:void(0);">全部活动</a></li>
-                <li id="op1"><a href="javascript:void(0);">社区服务</a></li>
-                <li id="op2"><a href="javascript:void(0);">主题宣传</a></li>
-                <li id="op3"><a href="javascript:void(0);">爱心募捐</a></li>
-                <li id="op4"><a href="javascript:void(0);">环境保护</a></li>
-                <li id="op5"><a href="javascript:void(0);">弱势群体</a></li>
-                <li id="op6"><a href="javascript:void(0);">爱心探访</a></li>
+                <li><a href="javascript:void(0);" role="button">全部活动</a></li>
+                <li id="op1"><a href="javascript:void(0);" role="button">社区服务</a></li>
+                <li id="op2"><a href="javascript:void(0);" role="button">主题宣传</a></li>
+                <li id="op3"><a href="javascript:void(0);" role="button">爱心募捐</a></li>
+                <li id="op4"><a href="javascript:void(0);" role="button">环境保护</a></li>
+                <li id="op5"><a href="javascript:void(0);" role="button">弱势群体</a></li>
+                <li id="op6"><a href="javascript:void(0);" role="button">爱心探访</a></li>
             </ul>
         </div>
     </div>
@@ -60,7 +61,7 @@
     <!----start-content----->
     <div class="content">
         <div class="grids">
-            <form id="learnMore">
+            <form id="learnMore" action="/contact" method="post">
                 <div class="grid box">
                     <div class="grid-header">
                         <h3>obj['title']</h3>

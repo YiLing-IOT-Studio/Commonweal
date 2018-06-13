@@ -1,10 +1,14 @@
 package cn.zhyocean.controller;
 
 import cn.yiban.open.Authorize;
+import cn.zhyocean.constant.Status;
 import cn.zhyocean.constant.YBOpen;
 import cn.zhyocean.model.YBUser;
 import cn.zhyocean.utils.TimeUtil;
+import net.sf.json.JSON;
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +24,8 @@ import java.io.IOException;
  */
 @Controller
 public class AuthControl {
+
+    private Logger logger = LoggerFactory.getLogger(AuthControl.class);
 
     /**
      * 请求授权认证
@@ -77,7 +83,6 @@ public class AuthControl {
         String ybSchoolName = (String) infoObject.get("yb_schoolname");
         YBUser YBUser = new YBUser(ybUserId, ybUsername, ybUsernick, ybSex, ybMoney, ybSchoolId, ybSchoolName);
         return YBUser;
-
     }
 
     /**
@@ -103,6 +108,28 @@ public class AuthControl {
         JSONObject jsonObject = JSONObject.fromObject(tokenInfo);
         int tokenExpireIn = (int) jsonObject.get("expire_in");
         return tokenExpireIn;
+    }
+
+    /**
+     * 注销易班token
+     * @param token 用户授权凭证
+     * @return 注销状态码
+     */
+    public String logoutToken(String token, HttpServletRequest request){
+
+        Authorize authorize = new Authorize(YBOpen.APP_ID, YBOpen.APP_SECRET);
+        String status = authorize.getManInstance(token).revoke();
+        request.getSession().removeAttribute("token");
+        request.getSession().removeAttribute("username");
+        JSONObject jsonObject = JSONObject.fromObject(status);
+        if(jsonObject.get("status").equals(Status.STATUS200)){
+            logger.info("token " + token + "注销成功");
+            return "200";
+        }else {
+            logger.info("token " + token + "注销失败");
+        }
+        return "500";
+
     }
 
 }

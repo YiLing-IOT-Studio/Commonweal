@@ -100,7 +100,8 @@ $(".record").click(function(){
 });
 
 //获取活动名
-$.ajax({
+$(".list").click(function(){
+    $.ajax({
         type:"get",
         url:"/getActiviteNames",
         dataType:"json",
@@ -108,7 +109,9 @@ $.ajax({
             var oDiv=$("#checkActivity");
             oDiv.html("");
             if(data.length==0){
-                alert("您还没有发布的活动！");
+                var myOption = $("<option></option>");
+                myOption.append('无');
+                oDiv.append(myOption);
             }
             else {
                 for (var i in data) {
@@ -121,12 +124,13 @@ $.ajax({
         error:function(){
             alert("请求失败");
         }
-});
+    });
+
+})
 
 //查看活动名单
 $("#checkActivityBtn").click(function(){
     var activityName=$("#checkActivity").val();
-    console.log(activityName);
     $.ajax({
         type:"post",
         url:"/getpersonalinfo",
@@ -154,8 +158,8 @@ $("#checkActivityBtn").click(function(){
                 })
             }
         },
-        error:function(xhr,msg){
-            alert(msg);
+        error:function(){
+            alert("请求失败");
         }
     })
 });

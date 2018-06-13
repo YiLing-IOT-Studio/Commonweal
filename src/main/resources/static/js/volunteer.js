@@ -3,13 +3,14 @@
  */
 $("#apply").hide();
 $("#article").hide();
+$("#msg").hide();
 ajaxData();
 $(".top-nav li").click(function(){
     var flag=$(this).attr('class');
     $("#record").hide();
-    $("#state").hide();
     $("#article").hide();
     $("#apply").hide();
+    $("#msg").hide();
     $("#"+flag).show();
 });
 //提交申请
@@ -37,6 +38,10 @@ $("#applyBtn").click(function(event){
             success:function(data){
                 if(data==1){
                     alert("提交成功");
+                } else if(data == 2) {
+                    alert("您已提交过申请");
+                } else if(data == 3) {
+                    alert("该组织名已存在");
                 }
                 else{
                     alert("提交失败，请重试");
@@ -73,7 +78,6 @@ function ajaxData(){
                         '<td>' + obj['activiteDate'] + '</td>' +
                         '<td>'+obj['place']+'</td>' +
                         '<td>'+obj['category']+'</td>' +
-                        '<td class="msg">'+str+'</td>' +
                         '</tr>'));
                     //查看全文
                     var thisTxt=$("#recordTable").find("tr").eq(obj['id']).find(".msg");
@@ -92,6 +96,7 @@ function ajaxData(){
 $(".record").click(function(){
     ajaxData();
 });
+//我的消息
 $(".msg").click(function(){
     $.ajax({
         type:"get",
@@ -100,21 +105,21 @@ $(".msg").click(function(){
         success:function(data){
             var oDiv=$("#msg");
             oDiv.html("");
-            if(data==""){
+            if(data=="0"){
                 oDiv.html("您还没有任何通知消息~")
             }
-            else if(data=="同意"){
-                oDiv.append("<p>恭喜，您已成为本平台活动的发布者！</p>");
+            else if(data=="1"){
+                oDiv.html("<p>恭喜，您已成为本平台活动的发布者！</p>");
             }
-            else if(data=="拒绝"){
-                oDiv.append("<p>很遗憾，您未能通过审核成为本平台活动的发布者，下次再试试吧^-^</p>");
+            else if(data=="2"){
+                oDiv.html("<p>很遗憾，您未能通过审核成为本平台活动的发布者，下次再试试吧^-^</p>");
             }
             else{
                 alert(data);
             }
         },
-        error:function(xhr,msg){
-            alert(msg);
+        error:function(){
+            alert("请求失败");
         }
     })
 });

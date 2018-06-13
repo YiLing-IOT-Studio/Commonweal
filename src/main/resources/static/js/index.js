@@ -42,7 +42,7 @@ function ajaxData(tag,currentPage){
                             '<div class="comments">' +
                             '<ul>' +
                                 '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="img/views.png" title="view" /></a></li>' +
-                                '<li><label class="readmore"><input type="radio" name="activityName" class="myHiddenRadio" value="'+obj['title']+'"/>LearnMore</label></li>' +
+                                '<li><label class="readmore"><input type="radio" name="activityName" class="myHiddenRadio" value="'+obj['title']+'"/>立即报名</label></li>' +
                             '</ul>' +
                             '</div>' +
                             '</div>' +

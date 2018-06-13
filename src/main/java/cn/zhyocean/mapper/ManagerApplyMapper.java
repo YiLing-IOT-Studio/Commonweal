@@ -30,4 +30,13 @@ public interface ManagerApplyMapper {
 
     @Select("select status from managerapply where proposer=#{proposer}")
     int getStatusByProposer(@Param("proposer") String proposer);
+
+    @Select("select * from managerapply where proposer=#{proposer}")
+    ManagerApply getByProposer(@Param("proposer") String proposer);
+
+    @Select("select proposer from managerapply where applyName=#{applyName}")
+    String getProposerByApplyName(@Param("applyName") String applyName);
+
+    @Select("select count(*) from managerapply where applyName=#{applyName}")
+    int countByApplyName(@Param("applyName") String applyName);
 }

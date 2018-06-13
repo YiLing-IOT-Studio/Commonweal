@@ -23,6 +23,10 @@ public class ManagerControl {
     @Autowired
     ManagerApplyService managerApplyService;
 
+    /**
+     * 获得已有组织
+     * @return
+     */
     @GetMapping("/getTissue")
     @ResponseBody
     public JSONArray getTissueByStatus(){
@@ -32,6 +36,10 @@ public class ManagerControl {
         return JSONArray.fromObject(getTissueByStatus);
     }
 
+    /**
+     * 查看申请的组织
+     * @return
+     */
     @GetMapping("/checkApplyTissue")
     @ResponseBody
     public JSONArray checkApplyTissue(){
@@ -41,6 +49,11 @@ public class ManagerControl {
         return JSONArray.fromObject(getTissueByStatus);
     }
 
+    /**
+     * 同意组织
+     * @param applyName 组织名
+     * @return
+     */
     @PostMapping("/agreeForTissue")
     @ResponseBody
     public int agreeForTissue(@RequestParam("applyName") String applyName,
@@ -55,6 +68,11 @@ public class ManagerControl {
         return updateResult;
     }
 
+    /**
+     * 删除组织
+     * @param applyName 组织名
+     * @return
+     */
     @PostMapping("/deleteOrgByApplyName")
     @ResponseBody
     public int deleteOrgByApplyName(@RequestParam("cancelName") String applyName){
