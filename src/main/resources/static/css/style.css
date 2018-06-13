@@ -327,14 +327,9 @@ h4{
 	text-decoration: none;
 	color: rgb(155, 155, 155);
 }
-.popular-post ul{
-	border-top:1px solid gray;
-	border-bottom:1px solid gray;
-}
-.popular-post li+li{
-	padding:8px auto;
-	margin:10px auto;
-	border-top:1px dashed gray;
+.popular-post li{
+	padding:8px 5px;
+	border-bottom:1px dashed gray;
 }
 .popular-post a:hover{
 	color:deeppink;
@@ -492,6 +487,22 @@ h4{
 	color:lightblue;
 	text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.44);
 }
+/*隐藏单选按钮*/
+.myHiddenRadio{
+	visibility: hidden;
+}
+/*模态框*/
+.modal-body p{
+	margin-bottom:12px;
+	margin-left:25%;
+}
+/*td,p*/
+.msg{
+	display:inline-block;
+	width:200px;
+
+	/*overflow:hidden;*/
+}
 /*------responive-design--------*/
 @media screen and (max-width: 1366px)	{
 	.wrap{
@@ -567,15 +578,7 @@ h4{
 		font-size: 2.8em;
 	}
 }
-/*隐藏单选按钮*/
-.myHiddenRadio{
-	visibility: hidden;
-}
-/*模态框*/
-.modal-body p{
-	margin-bottom:12px;
-	margin-left:25%;
-}
+
 @media screen and (max-width:800px)	{
 	.wrap{
 		width:90%;
@@ -637,7 +640,7 @@ h4{
 	}
 	.comments li {
 		margin: 10px 4px 0px 10px;
-	}	
+	}
 	.right-sidebar {
 		width: 14.55%;
 	}

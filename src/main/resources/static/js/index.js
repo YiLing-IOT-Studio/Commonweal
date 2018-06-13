@@ -55,7 +55,8 @@ function ajaxData(tag,currentPage){
                             '<h4 class="modal-title" id="myModalLabel">活动提示</h4>' +
                             '</div>' +
                             '<div class="modal-body">' +
-                            '<p>'+'活动简介：' + obj['msg'] + '</p>' +
+                            '<p>活动名称：'+obj['title']+'<p>'+
+                            '<p>活动简介：' + obj['msg'] + '</p>' +
                             '<p>活动时间：' + obj['activityDate'] + '<br/>' +
                             '<p>活动地点：' + obj['place'] + '<br/>' +
                             '<p>报名截止时间：' + obj['deadline'] + '<br/>' +
@@ -78,11 +79,6 @@ function ajaxData(tag,currentPage){
                             callback: function (currentPage) {
                                 ajaxData(tag, currentPage);
                             }
-                        });
-                        var thisTxt=$(".grid-img-content").eq(index).find("p");
-                        //查看全文
-                        thisTxt.click(function () {
-                            $(this).html(obj['msg']);
                         });
                     }
                 )

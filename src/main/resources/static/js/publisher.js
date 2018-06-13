@@ -82,26 +82,13 @@ $(".record").click(function(){
            }
            else{
                $.each(data,function(index,obj) {
-                   var str = obj['msg'];
-                   //限制显示词数，点击后显示所有词
-                   if (obj['msg'].length >= 10) {
-                       str = obj['msg'].substring(1, 10) + "...";
-                   }
                    oDiv.append($(
                        '<tr>' +
                        '<td>' + obj['title'] + '</td>' +
                        '<td>' + obj['activityDate'] + '</td>' +
                        '<td>'+obj['place']+'</td>' +
                        '<td>'+obj['category']+'</td>' +
-                       '<td class="msg">'+str+'</td>' +
-
                        '</tr>'));
-                   //查看全文
-
-                   var thisTxt=$("#recordTable").find("tr").eq(index).find(".msg");
-                   thisTxt.click(function(){
-                       $(this).html(obj['msg']);
-                   })
                })
            }
        },

@@ -16,7 +16,7 @@
 }
 .contact {
     padding: 10px 0px 35px 0px;
-    border-bottom: 1px ridge rgb(240, 240, 240);
+    /*border-bottom: 1px ridge rgb(240, 240, 240);*/
 }
 .contact-form{
     width: 100%;
@@ -64,8 +64,4 @@
 }
 .contact-form input[type="submit"]:hover{
     background: rgb(80, 80, 80);
-}
-.contact-form h3,.contact-address h3{
-    font-size:1.3em;
-    margin-bottom: 10px;
 }
