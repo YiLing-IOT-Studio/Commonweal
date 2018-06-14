@@ -8,7 +8,7 @@ import lombok.Data;
  * Describe: 公益活动信息
  */
 @Data
-public class Activite {
+public class Activity {
 
     private int id;
 
@@ -40,7 +40,7 @@ public class Activite {
     /**
      * 活动时间
      */
-    private String activiteDate;
+    private String activityDate;
 
     /**
      *剩余名额
@@ -60,38 +60,38 @@ public class Activite {
     /**
      *截至报名时间
      */
-    private String deadLine;
+    private String deadline;
 
     /**
      *人数限制
      */
     private int personalLimit;
 
-    public Activite() {
+    public Activity() {
     }
 
 
-    public Activite(String title, String category, String activiteDate, String msg, String place, String deadLine, int personalLimit) {
+    public Activity(String title, String category, String activityDate, String msg, String place, String deadline, int personalLimit) {
         this.title = title;
         this.category = category;
-        this.activiteDate = activiteDate;
+        this.activityDate = activityDate;
         this.msg = msg;
         this.place = place;
-        this.deadLine = deadLine;
+        this.deadline = deadline;
         this.personalLimit = personalLimit;
     }
 
-    public Activite(String title, String category, String publisher, String img, String publishDate, String activiteDate, int remain, String msg, String place, String deadLine, int personalLimit) {
+    public Activity(String title, String category, String publisher, String img, String publishDate, String activityDate, int remain, String msg, String place, String deadline, int personalLimit) {
         this.title = title;
         this.category = category;
         this.publisher = publisher;
         this.img = img;
         this.publishDate = publishDate;
-        this.activiteDate = activiteDate;
+        this.activityDate = activityDate;
         this.remain = remain;
         this.msg = msg;
         this.place = place;
-        this.deadLine = deadLine;
+        this.deadline = deadline;
         this.personalLimit = personalLimit;
     }
 }

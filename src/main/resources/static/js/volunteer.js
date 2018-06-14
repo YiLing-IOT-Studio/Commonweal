@@ -57,7 +57,7 @@ $("#applyBtn").click(function(event){
 function ajaxData(){
     $.ajax({
         type:"get",
-        url:"/getmyactivites",
+        url:"/getmyactivitys",
         dataType:"json",
         success:function(data){
             var oDiv=$("#recordTable");
@@ -75,7 +75,7 @@ function ajaxData(){
                     oDiv.append($(
                         '<tr>' +
                         '<td>' + obj['title'] + '</td>' +
-                        '<td>' + obj['activiteDate'] + '</td>' +
+                        '<td>' + obj['activityDate'] + '</td>' +
                         '<td>'+obj['place']+'</td>' +
                         '<td>'+obj['category']+'</td>' +
                         '</tr>'));
