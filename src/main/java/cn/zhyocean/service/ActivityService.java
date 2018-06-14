@@ -1,10 +1,8 @@
 package cn.zhyocean.service;
 
-import cn.zhyocean.model.Activite;
+import cn.zhyocean.model.Activity;
 import net.sf.json.JSONArray;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author: zhangocean
@@ -12,34 +10,34 @@ import java.util.List;
  * Describe: 活动相关业务
  */
 @Service
-public interface ActiviteService {
+public interface ActivityService {
 
     /**
      * 通过标签查找活动
      * @param tag 标签
      * @return 所有相关活动
      */
-    JSONArray findActiviteByTag(String tag, String rows, String pageNo);
+    JSONArray findActivityByTag(String tag, String rows, String pageNo);
 
     /**
      * 发布公益活动
-     * @param activite 活动实体类
+     * @param activity 活动实体类
      */
-    void insertActivite(Activite activite);
+    void insertActivity(Activity activity);
 
     /**
      * 通过发布者获得所有活动
      * @param publisher 发布者
      * @return 该发布者发布的所有活动
      */
-    JSONArray getAllActiviteByPublisher(String publisher);
+    JSONArray getAllActivityByPublisher(String publisher);
 
     /**
      * 通过发布者获得其发布的所有活动名
      * @param publsiher 发布者
      * @return 活动名的数组
      */
-    JSONArray getActiviteNamesByPublisher(String publsiher);
+    JSONArray getActivityNamesByPublisher(String publsiher);
 
     /**
      * 通过活动名和发布者获得活动id

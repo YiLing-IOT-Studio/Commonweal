@@ -1,8 +1,6 @@
 package cn.zhyocean.controller;
 
-import cn.yiban.open.Authorize;
-import cn.zhyocean.constant.YBOpen;
-import cn.zhyocean.service.ActiviteService;
+import cn.zhyocean.service.ActivityService;
 import cn.zhyocean.service.RoleService;
 import net.sf.json.JSONArray;
 import org.apache.ibatis.annotations.Param;
@@ -32,25 +30,28 @@ public class IndexControl {
     @Autowired
     AuthControl authControl;
     @Autowired
-    ActiviteService activiteService;
+    ActivityService activityService;
     @Autowired
     RoleService roleService;
 
     @GetMapping("/")
     public String index(HttpServletRequest request,
                         Model model){
-        String token = (String) request.getSession().getAttribute("token");
-       //如果没有token，则重定向到auth获取易班token
-        if(token == null || token.isEmpty()){
-            return "redirect:/auth1";
-        }
+//        String token = (String) request.getSession().getAttribute("token");
+//       //如果没有token，则重定向到auth获取易班token
+//        if(token == null || token.isEmpty()){
+//            return "redirect:/auth1";
+//        }
+//
+//        String username = (String) request.getSession().getAttribute("username");
+//
+//        String usernameIsTimeOut = logoutBySystem(username, request);
+//        if("no".equals(usernameIsTimeOut)){
+//            return "redirect:/auth1";
+//        }
 
-        String username = (String) request.getSession().getAttribute("username");
-
-        String usernameIsTimeOut = logoutBySystem(username, request);
-        if("no".equals(usernameIsTimeOut)){
-            return "redirect:/auth1";
-        }
+        String username = "张海洋";
+        request.getSession().setAttribute("username",username);
 
         model.addAttribute("username",username);
         model.addAttribute("role",roleService.getRoleByUsername(username));
@@ -88,21 +89,21 @@ public class IndexControl {
     }
 
     @ResponseBody
-    @GetMapping("/getActivite")
-    public JSONArray getActivite(@RequestParam("tag") String tag,
+    @GetMapping("/getActivity")
+    public JSONArray getActivity(@RequestParam("tag") String tag,
                                  @RequestParam("rows") String rows,
                                  @RequestParam("pageNo") String pageNo){
-        return activiteService.findActiviteByTag(tag, rows, pageNo);
+        return activityService.findActivityByTag(tag, rows, pageNo);
     }
 
     @GetMapping("/publisher")
     public String publisher(HttpServletRequest request,
                             Model model){
         String username = (String) request.getSession().getAttribute("username");
-        String usernameIsTimeOut = logoutBySystem(username, request);
-        if("no".equals(usernameIsTimeOut)){
-            return "redirect:/auth1";
-        }
+//        String usernameIsTimeOut = logoutBySystem(username, request);
+//        if("no".equals(usernameIsTimeOut)){
+//            return "redirect:/auth1";
+//        }
         model.addAttribute("username",username);
         model.addAttribute("role",roleService.getRoleByUsername(username));
         return "publisher";
@@ -112,10 +113,10 @@ public class IndexControl {
     public String volunteer(HttpServletRequest request,
                             Model model){
         String username = (String) request.getSession().getAttribute("username");
-        String usernameIsTimeOut = logoutBySystem(username, request);
-        if("no".equals(usernameIsTimeOut)){
-            return "redirect:/auth1";
-        }
+//        String usernameIsTimeOut = logoutBySystem(username, request);
+//        if("no".equals(usernameIsTimeOut)){
+//            return "redirect:/auth1";
+//        }
         model.addAttribute("username",username);
         model.addAttribute("role",roleService.getRoleByUsername(username));
         return "volunteer";
@@ -125,10 +126,10 @@ public class IndexControl {
     public String manager(HttpServletRequest request,
                           Model model){
         String username = (String) request.getSession().getAttribute("username");
-        String usernameIsTimeOut = logoutBySystem(username, request);
-        if("no".equals(usernameIsTimeOut)){
-            return "redirect:/auth1";
-        }
+//        String usernameIsTimeOut = logoutBySystem(username, request);
+//        if("no".equals(usernameIsTimeOut)){
+//            return "redirect:/auth1";
+//        }
         model.addAttribute("username",username);
         model.addAttribute("role",roleService.getRoleByUsername(username));
         return "manager";

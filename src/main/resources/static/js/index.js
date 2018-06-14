@@ -4,7 +4,7 @@
 function ajaxData(tag,currentPage){
     $.ajax({
         type:"get",
-        url:"/getActivite",
+        url:"/getActivity",
         dataType:"json",
         data:{
             'tag':tag,

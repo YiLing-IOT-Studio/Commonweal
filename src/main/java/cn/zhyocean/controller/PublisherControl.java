@@ -1,8 +1,8 @@
 package cn.zhyocean.controller;
 
-import cn.zhyocean.model.Activite;
-import cn.zhyocean.service.ActiviteApplyService;
-import cn.zhyocean.service.ActiviteService;
+import cn.zhyocean.model.Activity;
+import cn.zhyocean.service.ActivityApplyService;
+import cn.zhyocean.service.ActivityService;
 import cn.zhyocean.service.UserService;
 import cn.zhyocean.utils.FileUtil;
 import cn.zhyocean.utils.TimeUtil;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.crypto.interfaces.PBEKey;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -33,16 +32,16 @@ public class PublisherControl {
     private final Logger logger = LoggerFactory.getLogger(PublisherControl.class);
 
     @Autowired
-    ActiviteService activiteService;
+    ActivityService activityService;
     @Autowired
-    ActiviteApplyService activiteApplyService;
+    ActivityApplyService activityApplyService;
     @Autowired
     UserService userService;
 
     @PostMapping("/publisher")
     @ResponseBody
     public int publisher(@RequestParam("title") String title,
-                            @RequestParam("act_time") String activiteDate,
+                            @RequestParam("act_time") String activityDate,
                             @RequestParam("place") String place,
                             @RequestParam("deadline") String deadLine,
                             @RequestParam("msg") String msg,
@@ -52,7 +51,7 @@ public class PublisherControl {
         int personalLimit = Integer.parseInt(request.getParameter("limit"));
 
         int remain = personalLimit;
-        Activite activite = new Activite(title,category,activiteDate,msg,place,deadLine,personalLimit);
+        Activity activity = new Activity(title,category,activityDate,msg,place,deadLine,personalLimit);
 
         //获得发布者、发布时间、上传到阿里云OSS的路径
         String publisher = (String) request.getSession().getAttribute("username");
@@ -62,12 +61,12 @@ public class PublisherControl {
             FileUtil fileUtil = new FileUtil();
             String img = fileUtil.uploadFile(file, "公益活动图片/" + publisher);
 
-            activite.setPublisher(publisher);
-            activite.setImg(img);
-            activite.setPublishDate(publishDate);
-            activite.setRemain(remain);
+            activity.setPublisher(publisher);
+            activity.setImg(img);
+            activity.setPublishDate(publishDate);
+            activity.setRemain(remain);
 
-            activiteService.insertActivite(activite);
+            activityService.insertActivity(activity);
             return 1;
         } catch (Exception e){
             logger.error("上传失败！");
@@ -76,28 +75,31 @@ public class PublisherControl {
         return 0;
     }
 
-    @GetMapping("/getAllActivite")
+    @GetMapping("/getAllActivity")
     @ResponseBody
-    public JSONArray getAllActiviteByPublisher(HttpServletRequest request){
+    public JSONArray getAllActivityByPublisher(HttpServletRequest request){
         String publisher = (String) request.getSession().getAttribute("username");
-        return activiteService.getAllActiviteByPublisher(publisher);
+        return activityService.getAllActivityByPublisher(publisher);
     }
 
-    @GetMapping("/getActiviteNames")
+    @GetMapping("/getActivityNames")
     @ResponseBody
-    public JSONArray getActiviteNamesByPublisher(HttpServletRequest request){
+    public JSONArray getActivityNamesByPublisher(HttpServletRequest request){
         String publisher = (String) request.getSession().getAttribute("username");
 
-        return activiteService.getActiviteNamesByPublisher(publisher);
+        return activityService.getActivityNamesByPublisher(publisher);
     }
 
     @PostMapping("/getpersonalinfo")
     @ResponseBody
     public JSONArray getPersonalInfo(@Param("activityName") String activityName,
                                      HttpServletRequest request){
+        if("无".equals(activityName)){
+            return new JSONArray();
+        }
         String publisher = (String) request.getSession().getAttribute("username");
-        int activiteId = activiteService.getIdByTitleAndPublisher(activityName, publisher);
-        List<Integer> userIds = activiteApplyService.getUserIdByActiviteIdAndStatus(activiteId, 1);
+        int activityId = activityService.getIdByTitleAndPublisher(activityName, publisher);
+        List<Integer> userIds = activityApplyService.getUserIdByActivityIdAndStatus(activityId, 1);
         System.out.println(userIds);
         return userService.getByYbIds(userIds);
 

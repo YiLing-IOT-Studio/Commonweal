@@ -72,7 +72,7 @@ $("#pub_btn").click(function(event){
 $(".record").click(function(){
    $.ajax({
        type:"get",
-       url:"/getAllActivite",
+       url:"/getAllActivity",
        dataType:"json",
        success:function(data){
            var oDiv=$("#recordTable");
@@ -103,7 +103,7 @@ $(".record").click(function(){
 $(".list").click(function(){
     $.ajax({
         type:"get",
-        url:"/getActiviteNames",
+        url:"/getActivityNames",
         dataType:"json",
         success:function(data){
             var oDiv=$("#checkActivity");

@@ -8,7 +8,7 @@ import lombok.Data;
  * Describe: 活动申请
  */
 @Data
-public class ActiviteApply {
+public class ActivityApply {
 
     private int id;
 

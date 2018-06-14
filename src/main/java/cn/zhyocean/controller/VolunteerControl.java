@@ -2,7 +2,7 @@ package cn.zhyocean.controller;
 
 import cn.zhyocean.model.ManagerApply;
 import cn.zhyocean.model.YBUser;
-import cn.zhyocean.service.ActiviteApplyService;
+import cn.zhyocean.service.ActivityApplyService;
 import cn.zhyocean.service.ManagerApplyService;
 import cn.zhyocean.utils.FileUtil;
 import net.sf.json.JSONArray;
@@ -30,7 +30,7 @@ public class VolunteerControl {
     @Autowired
     AuthControl authControl;
     @Autowired
-    ActiviteApplyService activiteApplyService;
+    ActivityApplyService activityApplyService;
 
     /**
      * 申请成为发布者
@@ -66,17 +66,17 @@ public class VolunteerControl {
      * @param request
      * @return
      */
-    @GetMapping("/getmyactivites")
+    @GetMapping("/getmyactivitys")
     @ResponseBody
-    public JSONArray getMyActivites(HttpServletRequest request){
+    public JSONArray getMyActivitys(HttpServletRequest request){
 
         String token = (String) request.getSession().getAttribute("token");
         YBUser ybUser = authControl.getUserInfo(token);
         System.out.println("当前登录易班用户信息" + ybUser);
         int userId = Integer.parseInt(ybUser.getUserId());
 
-        List<Integer> activiteIds = activiteApplyService.getAllActivitesByUserIdAndApplyStatus(userId, 1);
-        return activiteApplyService.getAllActivitesByActiviteId(activiteIds);
+        List<Integer> activityIds = activityApplyService.getAllActivitysByUserIdAndApplyStatus(userId, 1);
+        return activityApplyService.getAllActivitysByActivityId(activityIds);
     }
 
     /**
