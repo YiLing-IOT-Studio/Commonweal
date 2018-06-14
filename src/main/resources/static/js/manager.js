@@ -33,6 +33,7 @@ $(".manage").click(function(){
                         '</tr>'));
                     //删除组织
                     $(".cancel").click(function(){
+                        var thisSection=$(this).parent();
                         var cancelName=$(this).parent().find(".orgName").html();
                         $.ajax({
                             type:"post",
@@ -42,7 +43,7 @@ $(".manage").click(function(){
                             },
                             success:function(data){
                                 if(data==1){
-                                    $(this).parent().remove();
+                                    thisSection.remove();
                                     alert("操作成功！");
 
                                 }

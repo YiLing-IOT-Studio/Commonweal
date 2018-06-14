@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>易公益</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png"/>
-    <link rel="stylesheet" href="lib/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="lib/jquery-3.2.1.min.js"></script>
-    <script src="lib/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/favicon.png"/>
+    <link rel="stylesheet" href="../static/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/contact.css">
+    <script src="../static/lib/jquery-3.2.1.min.js"></script>
+    <script src="../static/lib/bootstrap.min.js"></script>
 
 
 
 </head>
 <body>
 <nav>
-    <a href="/"><img src="img/branch.png"/></a>
+    <a href="/"><img src="../static/img/branch.png"/></a>
 
     <div class="user pull-right">
     <div class="btn-group">
@@ -62,48 +63,94 @@
     <div class="content">
         <div class="grids">
             <form id="learnMore" action="/contact" method="post">
-                <div class="grid box">
-                    <div class="grid-header">
-                        <h3>obj['title']</h3>
-                        <ul>
-                            <li><span>obj['publisher']</span></li>
-                            <li><span>+ obj['publishDate'] + '</span></li>
-                            <li><span style="color:deeppink">' + '剩余' + obj['remain'] + '名额' + '</span></li>
-                        </ul>
-                    </div>
-                    <div class="grid-img-content">
-                        <a href="singlepage.html"><img src="' + obj['img'] + '"/></a>
-                        <p>' + str + '</p>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="comments">
-                        <ul>
-                            <li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="img/views.png" title="view" /></a></li>
-                            <!--<li><a href="#" id="likes"><img src="img/likes.png" title="likes" /></a></li>-->
-                            <!--<li><a href="contact.html" id="link"><img src="img/link.png" title="link" /></a></li>-->
-                            <li><label class="readmore"><input type="radio" name="activityName" class="myHiddenRadio"/>立即报名</label></li>
-                        </ul>
-                    </div>
-                </div>
+                <!--<div class="grid box">-->
+                    <!--<div class="grid-header">-->
+                        <!--<h3>obj['title']</h3>-->
+                        <!--<ul>-->
+                            <!--<li><span>obj['publisher']</span></li>-->
+                            <!--<li><span>+ obj['publishDate'] + '</span></li>-->
+                            <!--<li><span style="color:deeppink">' + '剩余' + obj['remain'] + '名额' + '</span></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="grid-img-content">-->
+                        <!--<a href="singlepage.html"><img src="' + obj['img'] + '"/></a>-->
+                        <!--<p>' + str + '</p>-->
+                        <!--<div class="clear"></div>-->
+                    <!--</div>-->
+                    <!--<div class="comments">-->
+                        <!--<ul>-->
+                            <!--<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="img/views.png" title="view" /></a></li>-->
+                            <!--&lt;!&ndash;<li><a href="#" id="likes"><img src="img/likes.png" title="likes" /></a></li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<li><a href="contact.html" id="link"><img src="img/link.png" title="link" /></a></li>&ndash;&gt;-->
+                            <!--<li><label class="readmore" data-toggle="modal" data-target="#myModa2"><input type="radio" name="activityName" class="myHiddenRadio"/>立即报名</label></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
             </form>
 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">活动提示</h4>
+            <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+            <!--<div class="modal-dialog" role="document">-->
+                <!--<div class="modal-content">-->
+                    <!--<div class="modal-header">-->
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="myModalLabel">活动提示</h4>-->
+                        <!--</div>-->
+                    <!--<div class="modal-body">-->
+                        <!--<p>'活动名称：'+aaaaaaaaaaaaaa</p>-->
+                        <!--<p>'活动时间：' + obj['activityDate'] +</p>-->
+                        <!--<p>'活动地点：' + obj['place'] + </p>-->
+                        <!--<p>'报名截止时间：' + obj['deadline'] +</p>-->
+                        <!--<p>'人数限制：' + obj['personalLimit'] + </p>-->
+                    <!--</div>-->
+                    <!--<div class="modal-footer">-->
+                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="modal fade" id="myModa2" tabindex="-2" role="dialog" aria-labelledby="myModalLabel1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabe2">报名资料</h4>
                         </div>
-                    <div class="modal-body">
-                        <p>'活动名称：'+aaaaaaaaaaaaaa</p>
-                        <p>'活动时间：' + obj['activityDate'] +</p>
-                        <p>'活动地点：' + obj['place'] + </p>
-                        <p>'报名截止时间：' + obj['deadline'] +</p>
-                        <p>'人数限制：' + obj['personalLimit'] + </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <div class="modal-body">
+                            <div class="contact">
+                                <div class="contact-form">
+                                    <form id="contactForm" name="contactForm">
+                                        <input type="hidden" id="activityName" name="activityName">
+                                        <p>学号</p>
+                                        <input type="text" id="stuId" name="stuId">
+                                        <p>姓名</p>
+                                        <input type="text" id="stuName" name="stuName">
+                                        <p>学院</p>
+                                        <input type="text" id="school" name="school">
+                                        <p>专业</p>
+                                        <input type="text" id="major" name="major">
+                                        <p>年级</p>
+                                        <label>
+                                            <input type="radio" name="grade"  value="大一">大一
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="grade" value="大二"> 大二
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="grade" value="大三"> 大三
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="grade" value="大四"> 大四
+                                        </label>
+                                        <p>电话</p>
+                                        <input type="text" id="telephoneNumber" name="telephoneNumber"/><br/>
+
+                                        <input type="submit" value="提交" id="contactBtn" class="pull-right">
+                                    </form>
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -191,7 +238,7 @@
     <!---end-sidebar---->
 </div>
 <!---end-wrap---->
-<script src="js/plugs_paging.js"></script>
-<script src="js/index.js"></script>
+<script src="../static/js/plugs_paging.js"></script>
+<script src="../static/js/index.js"></script>
 </body>
 </html>
