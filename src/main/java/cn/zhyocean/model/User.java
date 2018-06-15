@@ -20,7 +20,7 @@ public class User {
     /**
      * 学号
      */
-    private long stuId;
+    private String stuId;
 
     /**
      * 姓名

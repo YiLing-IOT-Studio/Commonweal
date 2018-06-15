@@ -13,7 +13,7 @@ $(".manage").click(function(){
             oDiv.append($('<table class="table table-striped">'+
                 '<thead>'+
                 '<tr>'+
-                '<th>发布者</th>'+
+                '<th>组织名称</th>'+
                 '<th>所属上级</th>'+
                 '<th>资料</th>'+
                 '<th>操作</th>'+
@@ -28,7 +28,7 @@ $(".manage").click(function(){
                         '<tr>' +
                         '<td class="orgName">' + obj['applyName'] + '</td>' +
                         '<td>' + obj['superior'] + '</td>' +
-                        '<td class="data"><span style="color:red;"><a href="' + obj['evidence'] + ' target="_blank">证明材料</a>' + '</span></td>' +
+                        '<td class="data"><span style="color:red;"><a href="' + obj['evidence'] + ' " target="_blank">证明材料</a>' + '</span></td>' +
                         '<td  class="cancel"><span style="color:red;cursor:pointer;">删除</span></td>' +
                         '</tr>'));
                     //删除组织

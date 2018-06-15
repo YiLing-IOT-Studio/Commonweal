@@ -37,21 +37,20 @@ public class IndexControl {
     @GetMapping("/")
     public String index(HttpServletRequest request,
                         Model model){
-//        String token = (String) request.getSession().getAttribute("token");
-//       //如果没有token，则重定向到auth获取易班token
-//        if(token == null || token.isEmpty()){
-//            return "redirect:/auth1";
-//        }
-//
-//        String username = (String) request.getSession().getAttribute("username");
-//
-//        String usernameIsTimeOut = logoutBySystem(username, request);
-//        if("no".equals(usernameIsTimeOut)){
-//            return "redirect:/auth1";
-//        }
+        String token = (String) request.getSession().getAttribute("token");
+       //如果没有token，则重定向到auth获取易班token
+        if(token == null || token.isEmpty()){
+            return "redirect:/auth1";
+        }
 
-        String username = "张海洋";
-        request.getSession().setAttribute("username",username);
+        String username = (String) request.getSession().getAttribute("username");
+
+        String usernameIsTimeOut = logoutBySystem(username, request);
+        if("no".equals(usernameIsTimeOut)){
+            return "redirect:/auth1";
+        }
+
+        System.out.println("session'time is " + request.getSession().getMaxInactiveInterval());
 
         model.addAttribute("username",username);
         model.addAttribute("role",roleService.getRoleByUsername(username));
@@ -62,7 +61,6 @@ public class IndexControl {
     /**
      * 注销用户
      * @param request
-     * @param response
      * @return 注销状态码
      * @throws IOException
      */
@@ -100,10 +98,10 @@ public class IndexControl {
     public String publisher(HttpServletRequest request,
                             Model model){
         String username = (String) request.getSession().getAttribute("username");
-//        String usernameIsTimeOut = logoutBySystem(username, request);
-//        if("no".equals(usernameIsTimeOut)){
-//            return "redirect:/auth1";
-//        }
+        String usernameIsTimeOut = logoutBySystem(username, request);
+        if("no".equals(usernameIsTimeOut)){
+            return "redirect:/auth1";
+        }
         model.addAttribute("username",username);
         model.addAttribute("role",roleService.getRoleByUsername(username));
         return "publisher";
@@ -113,10 +111,10 @@ public class IndexControl {
     public String volunteer(HttpServletRequest request,
                             Model model){
         String username = (String) request.getSession().getAttribute("username");
-//        String usernameIsTimeOut = logoutBySystem(username, request);
-//        if("no".equals(usernameIsTimeOut)){
-//            return "redirect:/auth1";
-//        }
+        String usernameIsTimeOut = logoutBySystem(username, request);
+        if("no".equals(usernameIsTimeOut)){
+            return "redirect:/auth1";
+        }
         model.addAttribute("username",username);
         model.addAttribute("role",roleService.getRoleByUsername(username));
         return "volunteer";
@@ -126,18 +124,13 @@ public class IndexControl {
     public String manager(HttpServletRequest request,
                           Model model){
         String username = (String) request.getSession().getAttribute("username");
-//        String usernameIsTimeOut = logoutBySystem(username, request);
-//        if("no".equals(usernameIsTimeOut)){
-//            return "redirect:/auth1";
-//        }
+        String usernameIsTimeOut = logoutBySystem(username, request);
+        if("no".equals(usernameIsTimeOut)){
+            return "redirect:/auth1";
+        }
         model.addAttribute("username",username);
         model.addAttribute("role",roleService.getRoleByUsername(username));
         return "manager";
-    }
-
-    @PostMapping("/contact")
-    public String contact(@Param("activityName") String activityName){
-        return "contact";
     }
 
 

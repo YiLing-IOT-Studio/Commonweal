@@ -43,12 +43,17 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
     }
 
     @Override
-    public List<Integer> getAllActivitysByUserIdAndApplyStatus(int userId, int applyStatus) {
-        return activityApplyMapper.getAllActivitysByUserIdAndApplyStatus(userId, applyStatus);
+    public int countApplyActivity(int ybId, int activityId) {
+        return activityApplyMapper.countApplyActivity(ybId, activityId);
     }
 
     @Override
-    public JSONArray getAllActivitysByActivityId(List<Integer> activityId) {
+    public List<Integer> getAllActivityByYbId(int userId) {
+        return activityApplyMapper.getAllActivityByYbId(userId);
+    }
+
+    @Override
+    public JSONArray getAllActivityByActivityId(List<Integer> activityId) {
         List<Activity> activities = new ArrayList<>();
         Activity activity;
         for(Integer id : activityId){
@@ -61,7 +66,7 @@ public class ActivityApplyServiceImpl implements ActivityApplyService {
     }
 
     @Override
-    public List<Integer> getUserIdByActivityIdAndStatus(int activityId, int status) {
-        return activityApplyMapper.getUserIdByActivityIdAndStatus(activityId, status);
+    public List<Integer> getYbIdByActivityId(int activityId) {
+        return activityApplyMapper.getYbIdByActivityId(activityId);
     }
 }

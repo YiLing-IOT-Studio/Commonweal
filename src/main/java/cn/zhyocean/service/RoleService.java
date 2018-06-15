@@ -29,5 +29,5 @@ public interface RoleService {
      * @param username 用户名
      * @return 权限
      */
-    String getRoleByUsername(String username);
+    int getRoleByUsername(String username);
 }

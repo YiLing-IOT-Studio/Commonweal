@@ -73,6 +73,21 @@ public class ActivityServiceImpl implements ActivityService {
         return activityMapper.getIdByTitleAndPublisher(title, publisher);
     }
 
+    @Override
+    public int getIdByTitle(String title) {
+        return activityMapper.getIdByTitle(title);
+    }
+
+    @Override
+    public int getRemainByTitle(String title) {
+        return activityMapper.getRemainByTitle(title);
+    }
+
+    @Override
+    public void updateRemainByTitle(String title) {
+        activityMapper.updateRemainByTitle(title);
+    }
+
     private Map<String, Integer> countActivityByTag(String tag, int rows) {
         int countActivitys = activityMapper.countActivityByTag(tag);
         System.out.println("通过标签 " + tag + " 查到了" + countActivitys + "条数据");

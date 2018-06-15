@@ -38,13 +38,15 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public String getRoleByUsername(String username) {
+    public int getRoleByUsername(String username) {
+        int roleNum = 0;
         List<String> list = roleMapper.getRoleByUsername(username);
-        if (list.size() == 1){
-            return "ROLE_MANAGER";
-        } else if(list.size() == 2){
-            return "ROLE_SUPERMANAGER";
+        for (String role : list){
+            if(role.equals("ROLE_SUPERMANAGER") || role.equals("ROLE_MANAGER")){
+                roleNum++;
+            }
         }
-        return "ROLE_USER";
+        System.out.println("roleNum is " + roleNum);
+        return roleNum;
     }
 }

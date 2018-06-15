@@ -18,12 +18,15 @@ import java.util.List;
 @Repository
 public interface ActivityApplyMapper {
 
-    @Insert("insert into activityapply(activityId, userId, applyStatus) values(#{activityId},#{userId},#{applyStatus})")
+    @Insert("insert into activityapply(activityId, ybId) values(#{activityId},#{ybId})")
     void applyForActivity(ActivityApply activityApply);
 
-    @Select("select activityId from activityapply where userId=#{userId} and applyStatus=#{applyStatus}")
-    List<Integer> getAllActivitysByUserIdAndApplyStatus(@Param("userId") int userId, @Param("applyStatus") int applyStatus );
+    @Select("select activityId from activityapply where ybId=#{ybId}")
+    List<Integer> getAllActivityByYbId(@Param("ybId") int ybId);
 
-    @Select("select userId from activityapply where activityId=#{activityId} and applyStatus=#{applyStatus}")
-    List<Integer> getUserIdByActivityIdAndStatus(@Param("activityId") int activityId, @Param("applyStatus") int applyStatus);
+    @Select("select ybId from activityapply where activityId=#{activityId}")
+    List<Integer> getYbIdByActivityId(@Param("activityId") int activityId);
+
+    @Select("select count(*) from activityapply where ybId=#{ybId} and activityId=#{activityId}")
+    int countApplyActivity(@Param("ybId") int ybId, @Param("activityId") int activityId);
 }

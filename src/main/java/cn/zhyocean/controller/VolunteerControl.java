@@ -1,11 +1,14 @@
 package cn.zhyocean.controller;
 
 import cn.zhyocean.model.ManagerApply;
+import cn.zhyocean.model.User;
 import cn.zhyocean.model.YBUser;
 import cn.zhyocean.service.ActivityApplyService;
 import cn.zhyocean.service.ManagerApplyService;
+import cn.zhyocean.service.UserService;
 import cn.zhyocean.utils.FileUtil;
 import net.sf.json.JSONArray;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +34,8 @@ public class VolunteerControl {
     AuthControl authControl;
     @Autowired
     ActivityApplyService activityApplyService;
+    @Autowired
+    UserService userService;
 
     /**
      * 申请成为发布者
@@ -75,8 +80,8 @@ public class VolunteerControl {
         System.out.println("当前登录易班用户信息" + ybUser);
         int userId = Integer.parseInt(ybUser.getUserId());
 
-        List<Integer> activityIds = activityApplyService.getAllActivitysByUserIdAndApplyStatus(userId, 1);
-        return activityApplyService.getAllActivitysByActivityId(activityIds);
+        List<Integer> activityIds = activityApplyService.getAllActivityByYbId(userId);
+        return activityApplyService.getAllActivityByActivityId(activityIds);
     }
 
     /**
@@ -100,6 +105,23 @@ public class VolunteerControl {
             return "0";
         }
         return "0";
+    }
+
+    @PostMapping("/applyforactivity")
+    @ResponseBody
+    public int applyForActivity(User user,
+                                      @Param("activityName") String activityName,
+                                      HttpServletRequest request){
+        String username = (String) request.getSession().getAttribute("username");
+        String token = (String) request.getSession().getAttribute("token");
+        YBUser ybUser = authControl.getUserInfo(token);
+        int userId = Integer.parseInt(ybUser.getUserId());
+        //检查提交报名用户是否为登录用户
+        if(!username.equals(user.getStuName())){
+            return 0;
+        }
+        int applyResult = userService.applyForActivity(userId, user, activityName);
+        return  applyResult;
     }
 
 }

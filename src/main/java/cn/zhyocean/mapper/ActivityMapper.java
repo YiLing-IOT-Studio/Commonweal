@@ -1,10 +1,7 @@
 package cn.zhyocean.mapper;
 
 import cn.zhyocean.model.Activity;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -45,4 +42,13 @@ public interface ActivityMapper {
 
     @Select("select id from activity where title=#{title} and publisher=#{publisher}")
     int getIdByTitleAndPublisher(@Param("title") String title, @Param("publisher") String publisher);
+
+    @Select("select id from activity where title=#{title}")
+    int getIdByTitle(@Param("title") String title);
+
+    @Select("select remain from activity where title=#{title}")
+    int getRemainByTitle(@Param("title") String title);
+
+    @Update("update activity set remain=remain-1 where title=#{title}")
+    void updateRemainByTitle(@Param("title") String title);
 }

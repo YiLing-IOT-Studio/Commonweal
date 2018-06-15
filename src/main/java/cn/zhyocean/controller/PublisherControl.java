@@ -57,6 +57,7 @@ public class PublisherControl {
         String publisher = (String) request.getSession().getAttribute("username");
         TimeUtil timeUtil = new TimeUtil();
         String publishDate = timeUtil.getNowDate();
+        System.out.println("publishDate is " + publishDate);
         try {
             FileUtil fileUtil = new FileUtil();
             String img = fileUtil.uploadFile(file, "公益活动图片/" + publisher);
@@ -99,7 +100,7 @@ public class PublisherControl {
         }
         String publisher = (String) request.getSession().getAttribute("username");
         int activityId = activityService.getIdByTitleAndPublisher(activityName, publisher);
-        List<Integer> userIds = activityApplyService.getUserIdByActivityIdAndStatus(activityId, 1);
+        List<Integer> userIds = activityApplyService.getYbIdByActivityId(activityId);
         System.out.println(userIds);
         return userService.getByYbIds(userIds);
 

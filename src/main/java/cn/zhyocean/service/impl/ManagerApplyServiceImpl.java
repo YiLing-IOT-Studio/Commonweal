@@ -73,8 +73,8 @@ public class ManagerApplyServiceImpl implements ManagerApplyService{
     @Override
     public int deleteOrgByApplyName(String applyName) {
        try {
-           managerApplyMapper.deleteOrgByApplyName(applyName);
            String proposer = managerApplyMapper.getProposerByApplyName(applyName);
+           managerApplyMapper.deleteOrgByApplyName(applyName);
            roleService.deleteRoleByUsername(proposer);
            return 1;
        } catch (Exception e){

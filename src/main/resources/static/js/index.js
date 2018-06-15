@@ -23,7 +23,7 @@ function ajaxData(tag,currentPage){
                         var str = obj['msg'];
                         //限制显示词数，点击后显示所有词
                         if (obj['msg'].length >= 100) {
-                            str = obj['msg'].substring(1, 100) + "...";
+                            str = obj['msg'].substring(0, 100) + "...";
                         }
                         oDiv.append($('<div class="grid box">' +
                             '<div class="grid-header">' +
@@ -41,18 +41,18 @@ function ajaxData(tag,currentPage){
                             '</div>' +
                             '<div class="comments">' +
                             '<ul>' +
-                                '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal"><img src="img/views.png" title="view" /></a></li>' +
-                                '<li><label class="readmore" data-toggle="modal" data-target="#myModa2"><input type="radio" name="activityName" class="myHiddenRadio" value="'+obj['title']+'"/>立即报名</label></li>' +
+                                '<li><a href="#" id="view" data-toggle="modal" data-target="#myModal'+index+'"><img src="img/views.png" title="view" /></a></li>' +
+                                '<li><label class="readmore" data-toggle="modal" data-target="#myModals'+index+'"><input type="radio" name="activityName" class="myHiddenRadio" value="'+obj['title']+'"/>立即报名</label></li>' +
                             '</ul>' +
                             '</div>' +
                             '</div>' +
 
-                            '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                            '<div class="modal fade" id="'+'myModal'+index+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                            '<h4 class="modal-title" id="myModalLabel">活动提示</h4>' +
+                            '<h4 class="modal-title" id="myModalLabel'+index+'">活动提示</h4>' +
                             '</div>' +
                             '<div class="modal-body">' +
                             '<p>活动名称：'+obj['title']+'<p>'+
@@ -67,7 +67,55 @@ function ajaxData(tag,currentPage){
                             '</div>' +
                             '</div>' +
                             '</div>' +
-                            '</div>')
+                            '</div>'+
+                      '<div class="modal fade" id="myModals'+index+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">'+
+                            '<div class="modal-dialog" role="document">'+
+                                '<div class="modal-content">'+
+                                    '<div class="modal-header">'+
+                                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                                         '<h4 class="modal-title" id="myModalLabels'+index+'">报名资料</h4>'+
+                                     '</div>'+
+                                    '<div class="modal-body">'+
+                                        '<div class="contact">'+
+                                            '<div class="contact-form">'+
+                                                '<form id="contactForm'+index+'" name="contactForm">'+
+                                                '<input type="hidden" id="activityName'+index+'" name="activityName">'+
+                                                '<p>学号</p>'+
+                                                '<input type="text" id="stuId'+index+'" name="stuId">'+
+                                               '<p>姓名</p>'+
+                                                '<input type="text" id="stuName'+index+'" name="stuName">'+
+                                                '<p>学院</p>'+
+                                                '<input type="text" id="school'+index+'" name="school">'+
+                                                '<p>专业</p>'+
+                                                '<input type="text" id="major'+index+'" name="major">'+
+                                                '<p>年级</p>'+
+                                                '<label>'+
+                                                '<input type="radio" name="grade"  value="大一">大一'+
+                                                '</label>'+
+                                                '<label>'+
+                                                '<input type="radio" name="grade" value="大二"> 大二'+
+                                                '</label>'+
+                                                '<label>'+
+                                                '<input type="radio" name="grade" value="大三"> 大三'+
+                                                '</label>'+
+                                                '<label>'+
+                                                '<input type="radio" name="grade" value="大四"> 大四'+
+                                                '</label>'+
+                                                '<p>电话</p>'+
+                                                '<input type="text" id="telephoneNumber'+index+'" name="telephoneNumber"/><br/>'+
+
+                                                '<input type="submit" value="提交" id="contactBtn'+index+'" class="pull-right">'+
+                                                '</form>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+
+                            '</div>'+
+
+                        '</div>'+
+
+                        '</div>'
+                            )
                         );
                         scrollTo(0, 0);//回到顶部
                         //分页
@@ -83,8 +131,71 @@ function ajaxData(tag,currentPage){
                     //点击立即报名按钮
                     $(".myHiddenRadio").click(function(){
                         var activityName=$(this).attr('value');
-                        $("#activityName").attr('value',activityName);
-                    })
+                        $("#activityName"+index).attr('value',activityName);
+                    });
+                    //提交报名
+                    $("#contactBtn"+index).click(function(event){
+                        event.preventDefault();
+                        var patternId = /^\d{12}$/;
+                        var stuId=$("#stuId"+index).val();
+                        var patternPhone=/^1[345789]\d{9}$/;
+                        var telephoneNumber=$("#telephoneNumber"+index).val();
+                        var patternName= /^[\u4E00-\u9FA5A-Za-z]+$/;
+                        var stuName=$("#stuName"+index).val();
+                        var formElement=document.querySelector("#contactForm"+index);
+                        var contactForm=new FormData(formElement);
+                        if(stuId==""||!patternId.test(stuId)){
+                            alert("请正确填写学号");
+                        }
+                        else if(stuName==""||!patternName.test(stuName)){
+                            alert("请正确填写您的姓名");
+                        }
+
+                        else if($("#school"+index).val()==""){
+                            alert("请填写您所在的学院名称");
+                        }
+                        else if($("#major"+index).val()==""){
+                            alert("请填写您的专业名称");
+                        }
+                        else if($("#contactForm"+index).find(":radio[name='grade']").is(":checked")==false){
+                            alert("请选择您的年级");
+                        }
+                        else if(telephoneNumber==""||!patternPhone.test(telephoneNumber)){
+                            alert("请正确填写手机号");
+                        }
+                        else{
+                            $.ajax({
+                                type:"post",
+                                url:"/applyforactivity",
+                                data:contactForm,
+                                processData:false,
+                                contentType:false,
+                                success:function(data){
+                                    if(data==0){
+                                        alert("活动报名用户非该登录用户，不能帮别人报名哦");
+                                    }
+                                    else if(data==1){
+                                        alert("您已经报名了该活动");
+                                    }
+                                    else if(data==2){
+                                        alert("该活动报名人数已满");
+                                    }
+                                    else if(data==3){
+                                        alert("报名成功");
+                                        window.location.replace("http://localhost:8888/")
+                                        // window.location.replace("https://www.zhyocean.cn:8888/");
+                                }
+                                    else{
+                                        alert("报名失败，请重试");
+                                    }
+                                },
+                                error:function(){
+                                    alert("报名请求失败");
+                                }
+                            });
+                        }
+
+                    });
                     }
 
                 )
@@ -113,6 +224,7 @@ $('.logout').click(function () {
         success: function (data) {
             if (data == '200') {
                 window.location.replace("http://localhost:8888/auth1")
+                // window.location.replace("https://www.zhyocean.cn:8888/auth1")
             }
             else {
                 alert("注销失败，请重试！")
@@ -148,61 +260,7 @@ $.ajax({
     }
 });
 
-//提交报名
-$("#contactBtn").click(function(event){
-    event.preventDefault();
-    var patternId = /^\d{12}$/;
-    var stuId=$("#stuId").val();
-    var patternPhone=/^1[345789]\d{9}$/;
-    var telephoneNumber=$("#telephoneNumber").val();
-    var patternName= /^[\u4E00-\u9FA5A-Za-z]+$/;
-    var stuName=$("#stuName").val();
-    var formElement=document.querySelector("#contactForm");
-    var contactForm=new FormData(formElement);
-    if(stuId==""||!patternId.test(stuId)){
-        alert("请正确填写学号");
-    }
-    else if(stuName==""||!patternName.test(stuName)){
-        alert("请正确填写您的姓名");
-    }
 
-    else if($("#school").val()==""){
-        alert("请填写您所在的学院名称");
-    }
-    else if($("#major").val()==""){
-        alert("请填写您的专业名称");
-    }
-    else if($(":radio[name='grade']").is(":checked")==false){
-        alert("请选择您的年级");
-    }
-    else if(telephoneNumber==""||!patternPhone.test(telephoneNumber)){
-        alert("请正确填写手机号");
-    }
-    else{
-        $.ajax({
-            type:"post",
-            url:"/",
-            data:contactForm,
-            processData:false,
-            contentType:false,
-            success:function(data){
-                if(data==1){
-                    alert("报名成功");
-                }
-                else if(data==0){
-                    alert("当前名额已满，请选择其他活动报名");
-                }
-                else{
-                    alert("提交失败，请重试");
-                }
-            },
-            error:function(){
-                alert("请求失败");
-            }
-        });
-    }
-
-});
 
 
 

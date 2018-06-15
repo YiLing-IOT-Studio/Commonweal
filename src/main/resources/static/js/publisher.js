@@ -56,6 +56,8 @@ $("#pub_btn").click(function(event){
                 success:function(data){
                     if(parseInt(data)==1){
                         alert("发布成功");
+                        window.location.replace("http://localhost:8888/publisher");
+                        // window.location.replace("https://www.zhyocean.cn:8888/publisher");
                     }
                     else{
                         alert("发布失败");
@@ -125,41 +127,40 @@ $(".list").click(function(){
             alert("请求失败");
         }
     });
-
+    //查看活动名单
+    $("#checkActivityBtn").click(function(){
+        var activityName=$("#checkActivity").val();
+        $.ajax({
+            type:"post",
+            url:"/getpersonalinfo",
+            dataType:"json",
+            data:{
+                "activityName":activityName
+            },
+            success:function(data){
+                var oDiv=$("#attendList");
+                oDiv.html("");
+                if(data.length==0){
+                    oDiv.html("<h3>还没有人报名活动，再等等吧~</h3>");
+                }
+                else{
+                    $.each(data,function(index,obj) {
+                        oDiv.append($(
+                            '<tr>' +
+                            '<td>' + obj['stuId'] + '</td>' +
+                            '<td>' + obj['stuName'] + '</td>' +
+                            '<td>'+obj['school']+'</td>' +
+                            '<td>'+obj['major']+'</td>' +
+                            '<td>'+obj['grade']+'</td>' +
+                            '<td>'+obj['telephoneNumber']+'</td>' +
+                            '</tr>'));
+                    })
+                }
+            },
+            error:function(){
+                alert("请求失败");
+            }
+        })
+    });
 })
 
-//查看活动名单
-$("#checkActivityBtn").click(function(){
-    var activityName=$("#checkActivity").val();
-    $.ajax({
-        type:"post",
-        url:"/getpersonalinfo",
-        dataType:"json",
-        data:{
-            "activityName":activityName
-        },
-        success:function(data){
-            var oDiv=$("#attendList");
-            oDiv.html("");
-            if(data.length==0){
-                oDiv.html("<h3>还没有人报名活动，再等等吧~</h3>");
-            }
-            else{
-                $.each(data,function(index,obj) {
-                    oDiv.append($(
-                        '<tr>' +
-                        '<td>' + obj['stuId'] + '</td>' +
-                        '<td>' + obj['stuName'] + '</td>' +
-                        '<td>'+obj['school']+'</td>' +
-                        '<td>'+obj['major']+'</td>' +
-                        '<td>'+obj['grade']+'</td>' +
-                        '<td>'+obj['telephoneNumber']+'</td>' +
-                        '</tr>'));
-                })
-            }
-        },
-        error:function(){
-            alert("请求失败");
-        }
-    })
-});

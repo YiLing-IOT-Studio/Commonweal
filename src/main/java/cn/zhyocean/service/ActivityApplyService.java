@@ -22,19 +22,27 @@ public interface ActivityApplyService {
     int applyForActivity(ActivityApply activityApply);
 
     /**
+     * 通过易班id和活动id查询是否已经提交申请
+     * @param ybId 易班id
+     * @param activityId 活动id
+     * @return 1--已提交申请   0-未提交申请
+     */
+    int countApplyActivity(int ybId, int activityId);
+
+    /**
      * 通过userId和status查找该用户参加的所有活动id
      * @param userId
      * @param applyStatus
      * @return
      */
-    List<Integer> getAllActivitysByUserIdAndApplyStatus(int userId, int applyStatus);
+    List<Integer> getAllActivityByYbId(int userId);
 
     /**
      * 通过活动Id获得这些活动的所有信息
      * @param activityId 活动id
      * @return 活动的所有信息
      */
-    JSONArray getAllActivitysByActivityId(List<Integer> activityId);
+    JSONArray getAllActivityByActivityId(List<Integer> activityId);
 
     /**
      * 通过活动id和报名成功的状态获得该活动的所有易班id
@@ -42,6 +50,6 @@ public interface ActivityApplyService {
      * @param status 报名成功的状态
      * @return 用活动的所有易班id
      */
-    List<Integer> getUserIdByActivityIdAndStatus(int activityId, int status);
+    List<Integer> getYbIdByActivityId(int activityId);
 
 }

@@ -5,33 +5,34 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>易公益</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="../static/img/favicon.png"/>
-    <link rel="stylesheet" href="../static/lib/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/contact.css">
-    <script src="../static/lib/jquery-3.2.1.min.js"></script>
-    <script src="../static/lib/bootstrap.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png"/>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
 
 
 
 </head>
 <body>
 <nav>
-    <a href="/"><img src="../static/img/branch.png"/></a>
+    <a href="/"><img src="img/branch.png"/></a>
 
     <div class="user pull-right">
     <div class="btn-group">
-        <button type="button" class="btn btn-danger "><span th:text="${username}"></span></button>
+        <!--<button type="button" class="btn btn-danger "><span th:text="${username}"></span></button>-->
         <button type="button" class="btn btn-danger  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span>
+            <span th:text="${username}"></span> <span class="caret"></span>
             <span class="sr-only">Toggle Dropdown</span>
         </button>
 
         <ul class="dropdown-menu text-left">
 
             <li><a href="/volunteer">志愿者</a></li>
-            <li><a href="/publisher">发布活动者</a></li>
-            <li><a href="manager.html">管理员</a></li>
+            <li th:if="${role} == 1"><a href="/publisher">发布活动者</a></li>
+            <li th:if="${role} == 2"><a href="/publisher">发布活动者</a></li>
+            <li th:if="${role} == 2"><a href="/manager">管理员</a></li>
         </ul>
     </div>
         <button class="btn btn-danger logout">注销</button>
@@ -108,52 +109,52 @@
                     <!--</div>-->
                 <!--</div>-->
             <!--</div>-->
-            <div class="modal fade" id="myModa2" tabindex="-2" role="dialog" aria-labelledby="myModalLabel1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabe2">报名资料</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="contact">
-                                <div class="contact-form">
-                                    <form id="contactForm" name="contactForm">
-                                        <input type="hidden" id="activityName" name="activityName">
-                                        <p>学号</p>
-                                        <input type="text" id="stuId" name="stuId">
-                                        <p>姓名</p>
-                                        <input type="text" id="stuName" name="stuName">
-                                        <p>学院</p>
-                                        <input type="text" id="school" name="school">
-                                        <p>专业</p>
-                                        <input type="text" id="major" name="major">
-                                        <p>年级</p>
-                                        <label>
-                                            <input type="radio" name="grade"  value="大一">大一
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="grade" value="大二"> 大二
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="grade" value="大三"> 大三
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="grade" value="大四"> 大四
-                                        </label>
-                                        <p>电话</p>
-                                        <input type="text" id="telephoneNumber" name="telephoneNumber"/><br/>
+            <!--<div class="modal fade" id="myModals2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+                <!--<div class="modal-dialog" role="document">-->
+                    <!--<div class="modal-content">-->
+                        <!--<div class="modal-header">-->
+                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                            <!--<h4 class="modal-title" id="myModalLabe2">报名资料</h4>-->
+                        <!--</div>-->
+                        <!--<div class="modal-body">-->
+                            <!--<div class="contact">-->
+                                <!--<div class="contact-form">-->
+                                    <!--<form id="contactForm" name="contactForm">-->
+                                        <!--<input type="hidden" id="activityName" name="activityName">-->
+                                        <!--<p>学号</p>-->
+                                        <!--<input type="text" id="stuId" name="stuId">-->
+                                        <!--<p>姓名</p>-->
+                                        <!--<input type="text" id="stuName" name="stuName">-->
+                                        <!--<p>学院</p>-->
+                                        <!--<input type="text" id="school" name="school">-->
+                                        <!--<p>专业</p>-->
+                                        <!--<input type="text" id="major" name="major">-->
+                                        <!--<p>年级</p>-->
+                                        <!--<label>-->
+                                            <!--<input type="radio" name="grade"  value="大一">大一-->
+                                        <!--</label>-->
+                                        <!--<label>-->
+                                            <!--<input type="radio" name="grade" value="大二"> 大二-->
+                                        <!--</label>-->
+                                        <!--<label>-->
+                                            <!--<input type="radio" name="grade" value="大三"> 大三-->
+                                        <!--</label>-->
+                                        <!--<label>-->
+                                            <!--<input type="radio" name="grade" value="大四"> 大四-->
+                                        <!--</label>-->
+                                        <!--<p>电话</p>-->
+                                        <!--<input type="text" id="telephoneNumber" name="telephoneNumber"/><br/>-->
 
-                                        <input type="submit" value="提交" id="contactBtn" class="pull-right">
-                                    </form>
-                                </div>
-                                <div class="clear"> </div>
-                            </div>
-                        </div>
+                                        <!--<input type="submit" value="提交" id="contactBtn" class="pull-right">-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                                <!--<div class="clear"> </div>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                    </div>
-                </div>
-            </div>
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
             <!--<script>-->
                 <!--myHiddenRadio.css('visibility','hidden');-->
                 <!--//点击learnMore提交-->
@@ -238,7 +239,7 @@
     <!---end-sidebar---->
 </div>
 <!---end-wrap---->
-<script src="../static/js/plugs_paging.js"></script>
-<script src="../static/js/index.js"></script>
+<script src="js/plugs_paging.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>

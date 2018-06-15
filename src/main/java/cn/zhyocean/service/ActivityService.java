@@ -46,4 +46,24 @@ public interface ActivityService {
      * @return 活动id
      */
     int getIdByTitleAndPublisher(String title, String publisher);
+
+    /**
+     * 通过活动名获得活动id
+     * @param title 活动名
+     * @return 活动id
+     */
+    int getIdByTitle(String title);
+
+    /**
+     * 通过活动名获得该活动剩余名额
+     * @param title 活动名
+     * @return 剩余名额
+     */
+    int getRemainByTitle(String title);
+
+    /**
+     * 通过活动名更新剩余名额
+     * @param title 活动名
+     */
+    void updateRemainByTitle(String title);
 }

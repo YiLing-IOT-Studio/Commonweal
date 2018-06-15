@@ -12,10 +12,16 @@ public class ActivityApply {
 
     private int id;
 
-    private int activiteId;
+    private int activityId;
 
-    private int userId;
+    private int ybId;
 
-    private String applyStatus;
 
+    public ActivityApply() {
+    }
+
+    public ActivityApply(int activityId, int ybId) {
+        this.activityId = activityId;
+        this.ybId = ybId;
+    }
 }
