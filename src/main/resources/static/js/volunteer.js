@@ -38,8 +38,8 @@ $("#applyBtn").click(function(event){
             success:function(data){
                 if(data==1){
                     alert("提交成功");
-                    window.location.replace("http://localhost:8888/volunteer")
-                    // window.location.replace("https://www.zhyocean.cn:8888/volunteer");
+                    // window.location.replace("http://localhost:8888/volunteer")
+                    window.location.replace("https://www.zhyocean.cn:8888/volunteer");
                 } else if(data == 2) {
                     alert("您已提交过申请");
                 } else if(data == 3) {

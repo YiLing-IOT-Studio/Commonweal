@@ -182,8 +182,8 @@ function ajaxData(tag,currentPage){
                                     }
                                     else if(data==3){
                                         alert("报名成功");
-                                        window.location.replace("http://localhost:8888/")
-                                        // window.location.replace("https://www.zhyocean.cn:8888/");
+                                        // window.location.replace("http://localhost:8888/")
+                                        window.location.replace("https://www.zhyocean.cn:8888/");
                                 }
                                     else{
                                         alert("报名失败，请重试");
@@ -223,8 +223,8 @@ $('.logout').click(function () {
         data: {},
         success: function (data) {
             if (data == '200') {
-                window.location.replace("http://localhost:8888/auth1")
-                // window.location.replace("https://www.zhyocean.cn:8888/auth1")
+                // window.location.replace("http://localhost:8888/auth1")
+                window.location.replace("https://www.zhyocean.cn:8888/auth1")
             }
             else {
                 alert("注销失败，请重试！")

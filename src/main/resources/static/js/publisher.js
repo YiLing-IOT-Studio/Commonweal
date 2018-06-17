@@ -56,8 +56,8 @@ $("#pub_btn").click(function(event){
                 success:function(data){
                     if(parseInt(data)==1){
                         alert("发布成功");
-                        window.location.replace("http://localhost:8888/publisher");
-                        // window.location.replace("https://www.zhyocean.cn:8888/publisher");
+                        // window.location.replace("http://localhost:8888/publisher");
+                        window.location.replace("https://www.zhyocean.cn:8888/publisher");
                     }
                     else{
                         alert("发布失败");

@@ -22,42 +22,42 @@ public class CommonwealApplication {
 		SpringApplication.run(CommonwealApplication.class, args);
 	}
 
-//	@Component
-//	public static class CustomServletContainer implements EmbeddedServletContainerCustomizer {
-//
-//		@Override
-//		public void customize(ConfigurableEmbeddedServletContainer container) {
-//			container.setPort(8888);
-//			container.setSessionTimeout(1, TimeUnit.MINUTES);
-//		}
-//	}
-//
-//	@Bean
-//	public EmbeddedServletContainerFactory servletContainerFactory(){
-//		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
-//			@Override
-//			protected void postProcessContext(Context context) {
-//				SecurityConstraint securityConstraint = new SecurityConstraint();
-//				securityConstraint.setUserConstraint("CONFIDENTIAL");
-//				SecurityCollection collection = new SecurityCollection();
-//				collection.addPattern("/*");
-//				securityConstraint.addCollection(collection);
-//				context.addConstraint(securityConstraint);
-//			}
-//		};
-//
-//		tomcat.addAdditionalTomcatConnectors(httpConnector());
-//		return tomcat;
-//	}
-//
-//	@Bean
-//	public Connector httpConnector(){
-//		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-//		connector.setScheme("http");
-//		connector.setPort(8080);
-//		//设置为false，则会自动从http跳转到https
-//		connector.setSecure(false);
-//		connector.setRedirectPort(8888);
-//		return connector;
-//	}
+	@Component
+	public static class CustomServletContainer implements EmbeddedServletContainerCustomizer {
+
+		@Override
+		public void customize(ConfigurableEmbeddedServletContainer container) {
+			container.setPort(8888);
+			container.setSessionTimeout(1, TimeUnit.MINUTES);
+		}
+	}
+
+	@Bean
+	public EmbeddedServletContainerFactory servletContainerFactory(){
+		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
+			@Override
+			protected void postProcessContext(Context context) {
+				SecurityConstraint securityConstraint = new SecurityConstraint();
+				securityConstraint.setUserConstraint("CONFIDENTIAL");
+				SecurityCollection collection = new SecurityCollection();
+				collection.addPattern("/*");
+				securityConstraint.addCollection(collection);
+				context.addConstraint(securityConstraint);
+			}
+		};
+
+		tomcat.addAdditionalTomcatConnectors(httpConnector());
+		return tomcat;
+	}
+
+	@Bean
+	public Connector httpConnector(){
+		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+		connector.setScheme("http");
+		connector.setPort(8080);
+		//设置为false，则会自动从http跳转到https
+		connector.setSecure(false);
+		connector.setRedirectPort(8888);
+		return connector;
+	}
 }
