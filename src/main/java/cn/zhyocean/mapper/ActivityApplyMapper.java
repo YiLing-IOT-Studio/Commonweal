@@ -18,15 +18,15 @@ import java.util.List;
 @Repository
 public interface ActivityApplyMapper {
 
-    @Insert("insert into activityapply(activityId, ybId) values(#{activityId},#{ybId})")
+    @Insert("insert into activity_apply(activityId, ybId) values(#{activityId},#{ybId})")
     void applyForActivity(ActivityApply activityApply);
 
-    @Select("select activityId from activityapply where ybId=#{ybId}")
+    @Select("select activityId from activity_apply where ybId=#{ybId}")
     List<Integer> getAllActivityByYbId(@Param("ybId") int ybId);
 
-    @Select("select ybId from activityapply where activityId=#{activityId}")
+    @Select("select ybId from activity_apply where activityId=#{activityId}")
     List<Integer> getYbIdByActivityId(@Param("activityId") int activityId);
 
-    @Select("select count(*) from activityapply where ybId=#{ybId} and activityId=#{activityId}")
+    @Select("select count(*) from activity_apply where ybId=#{ybId} and activityId=#{activityId}")
     int countApplyActivity(@Param("ybId") int ybId, @Param("activityId") int activityId);
 }

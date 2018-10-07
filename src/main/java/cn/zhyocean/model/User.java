@@ -46,5 +46,4 @@ public class User {
      * 电话
      */
     private String telephoneNumber;
-
 }

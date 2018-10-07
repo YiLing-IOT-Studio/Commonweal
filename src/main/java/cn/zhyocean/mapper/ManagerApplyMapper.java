@@ -15,28 +15,28 @@ import java.util.List;
 @Repository
 public interface ManagerApplyMapper {
 
-    @Insert("insert into managerapply(applyName,superior,evidence,proposer,status) " +
+    @Insert("insert into manager_apply(applyName,superior,evidence,proposer,status) " +
             "values(#{applyName},#{superior},#{evidence},#{proposer},#{status})")
     void insertApply(ManagerApply managerApply);
 
-    @Select("select * from managerapply where status=#{status}")
+    @Select("select * from manager_apply where status=#{status}")
     List<ManagerApply> getTissueByStatus(@Param("status") int status);
 
-    @Update("update managerapply set status=#{status} where applyName=#{applyName}")
+    @Update("update manager_apply set status=#{status} where applyName=#{applyName}")
     void updateApplyStatus(@Param("status") int status, @Param("applyName") String applyName);
 
-    @Delete("delete from managerapply where applyName=#{applyName}")
+    @Delete("delete from manager_apply where applyName=#{applyName}")
     void deleteOrgByApplyName(@Param("applyName") String applyName);
 
-    @Select("select status from managerapply where proposer=#{proposer}")
+    @Select("select status from manager_apply where proposer=#{proposer}")
     int getStatusByProposer(@Param("proposer") String proposer);
 
-    @Select("select * from managerapply where proposer=#{proposer}")
+    @Select("select * from manager_apply where proposer=#{proposer}")
     ManagerApply getByProposer(@Param("proposer") String proposer);
 
-    @Select("select proposer from managerapply where applyName=#{applyName}")
+    @Select("select proposer from manager_apply where applyName=#{applyName}")
     String getProposerByApplyName(@Param("applyName") String applyName);
 
-    @Select("select count(*) from managerapply where applyName=#{applyName}")
+    @Select("select count(*) from manager_apply where applyName=#{applyName}")
     int countByApplyName(@Param("applyName") String applyName);
 }

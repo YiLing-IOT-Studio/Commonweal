@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface RoleMapper {
 
-    @Insert("insert into role(username,role) values(#{username},#{role})")
+    @Insert("insert into role(id,role) values(#{username},#{role})")
     void insertRole(Role role);
 
     @Delete("delete from role where username=#{username}")

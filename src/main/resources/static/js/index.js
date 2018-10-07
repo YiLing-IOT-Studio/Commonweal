@@ -35,7 +35,7 @@ function ajaxData(tag,currentPage){
                             '</ul>' +
                             '</div>' +
                             '<div class="grid-img-content">' +
-                            '<a href="singlepage.html"><img src="' + obj['img'] + '"/></a>' +
+                            '<a><img src="' + obj['img'] + '"/></a>' +
                             '<p>' + str + '</p>' +
                             '<div class="clear"></div>' +
                             '</div>' +

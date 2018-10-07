@@ -15,20 +15,20 @@ public class OSSClientConstants {
     /**
      * 阿里云API的密钥Access Key ID
      */
-    public static final String ACCESS_KEY_ID = "LTAIm61eZNIRtrXi";
+    public static final String ACCESS_KEY_ID = "*******";
     /**
      *阿里云API的密钥Access Key Secret
      */
-    public static final String ACCESS_KEY_SECRET = "uMXKqd1WhPH6bWL8SIf9hscfeHY8qo";
+    public static final String ACCESS_KEY_SECRET = "******";
 
     /**
      * 阿里云API的bucket名称
      */
-    public static final String BACKET_NAME = "myblog-zhyocean";
+    public static final String BACKET_NAME = "yiban-commonweal";
 
     /**
      * 阿里云API的文件夹名称
      */
-    public static final String FOLDER="yiban/commonweal/";
+    public static final String FOLDER="commonweal/";
 
 }
